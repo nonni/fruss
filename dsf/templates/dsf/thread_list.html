@@ -1,0 +1,29 @@
+{% load comments %}
+{% block content %}
+<table id="threads">
+    <tr>
+        <td>Tags</td>
+        <td>Title</td>
+        <td>Posts</td>
+        <td>Info</td>
+    </tr>
+
+    {% for thread in object_list reversed %}
+        <tr>
+            <td>{{ thread.category }}</td>
+            <td><a href="{% url thread thread.id %}">{{ thread.title }}</a></td>
+            {% get_comment_count for dsf.thread thread.id as comment_count %}
+            {% get_comment_list for dsf.thread thread.id as comment_list %}
+           <td>{{ comment_count }}</td>
+            <td>{{ thread.pub_date|timesince|upper }} ago
+                <br/> by {{ thread.author }}</td>
+            {% if comment_list %}
+                <td>{{ comment_list|last|escape|striptags|truncatewords:9 }}</td>
+            {% else %}
+                <td>No posts</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

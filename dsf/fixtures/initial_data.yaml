@@ -1,0 +1,90 @@
+-   pk: 1
+    model: auth.user
+    fields:
+        username: admin
+        email: admin@admin.com
+        first_name: ''
+        last_name: ''
+        groups: []
+        is_active: true
+        is_staff: true
+        is_superuser: true
+        password: sha1$309dd$a15b4a72d86d946603196c4e74ff5804b2b7c378
+
+-   pk: 1
+    model: dsf.Category
+    fields:
+        name: 'General'
+        color: '#CCCCCC'
+
+-   pk: 1
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 1'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 2
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 2'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 3
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 3'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 4
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 4'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 5
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 5'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 6
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 6'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 7
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 7'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 8
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 8'
+        body: 'Body of thread'
+        category: 1
+
+-   pk: 9
+    model: dsf.Thread
+    fields:
+        author: 1
+        title: 'Thread 9'
+        body: 'Body of thread'
+        category: 1
