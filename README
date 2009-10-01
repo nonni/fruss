@@ -3,4 +3,13 @@ TODO:
 in: thread_list.html
  - truncatewords might not be the best filter to use when displaying part of comments.
 
-User has permissions to post in Category, User has permission to see category.
+* User has permissions to post in Category, User has permission to see category.
+
+* Thread list paging
+
+* Comment paging
+
+* Comment moderation
+
+
+d@W}x?Zc
