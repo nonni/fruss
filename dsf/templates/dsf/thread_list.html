@@ -27,4 +27,21 @@
     {% endfor %}
 </table>
 
+<div class="pagination">
+    {% if previous %}
+        <a href="?page={{ previous }}">previous</a>
+    {% endif %}
+    {% for num in page_range %}
+        {% ifequal page num %}
+            {{ num }}
+        {% else %}
+            <a href="?page={{num}}">{{num}}</a>
+        {% endifequal %}
+        | 
+    {% endfor %}
+    {% ifnotequal page page_range|last %}
+        <a href="?page={{ next }}">next</a>
+    {% endifnotequal %}
+</div>
+
 {% endblock content %}
