@@ -9,7 +9,7 @@
         <td>Info</td>
     </tr>
 
-    {% for thread in object_list reversed %}
+    {% for thread in object_list %}
         <tr>
             <td>{{ thread.category }}</td>
             <td><a href="{% url thread thread.id %}">{{ thread.title }}</a></td>
