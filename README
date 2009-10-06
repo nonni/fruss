@@ -5,11 +5,11 @@ in: thread_list.html
 
 [ ] User has permissions to post in Category, User has permission to see category.
 
-[X] Thread list paging
+[ ] Thread list paging
 
-[ ] Comment paging
+[ ] Reply paging
 
-[ ] Comment moderation, grant comment moderation to owner and staff
+[ ] Reply moderation, grant comment moderation to owner and staff
 
 [ ] User creation, grant user creation permission for staff
 
