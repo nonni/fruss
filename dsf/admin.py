@@ -1,6 +1,6 @@
 from django.contrib import admin
-from models import Thread, Category
-
+from models import Thread, Category, Post
+"""
 class ThreadAdmin(admin.ModelAdmin):
     fields = ('title', 'body', 'category')
     list_display = ('title', 'author', 'pub_date')
@@ -10,6 +10,8 @@ class ThreadAdmin(admin.ModelAdmin):
         if not change:
             obj.author = request.user
         obj.save()
-
-admin.site.register(Thread, ThreadAdmin)
+"""
+admin.site.register(Thread)
 admin.site.register(Category)
+admin.site.register(Post)
+

@@ -1,5 +1,5 @@
 {% extends "dsf/base.html" %}
-{% load comments %}
+{% load thread_filters thread_tags %}
 {% block content %}
 <table id="threads">
     <tr>
@@ -8,40 +8,16 @@
         <td>Posts</td>
         <td>Info</td>
     </tr>
-
-    {% for thread in object_list %}
+    {% for thread in thread_list %}
         <tr>
             <td>{{ thread.category }}</td>
             <td><a href="{% url thread thread.id %}">{{ thread.title }}</a></td>
-            {% get_comment_count for dsf.thread thread.id as comment_count %}
-            {% get_comment_list for dsf.thread thread.id as comment_list %}
-           <td>{{ comment_count }}</td>
-            <td>{{ thread.pub_date|timesince|upper }} ago
-                <br/> by {{ thread.author }}</td>
-            {% if comment_list %}
-                <td>{{ comment_list|last|escape|striptags|truncatewords:9 }}</td>
-            {% else %}
-                <td>No posts</td>
-            {% endif %}
+            <td>{{ thread|post_count }}</td>
+             {% get_thread_post thread.id as tp  %}
+             <td> {{ tp.pub_date|timesince|upper  }} ago <br />
+                 by {{ tp.author }}</td>
+             <td>{{ thread|redchord|escape|striptags }}</td>
         </tr>
     {% endfor %}
 </table>
-
-<div class="pagination">
-    {% if previous %}
-        <a href="?page={{ previous }}">previous</a>
-    {% endif %}
-    {% for num in page_range %}
-        {% ifequal page num %}
-            {{ num }}
-        {% else %}
-            <a href="?page={{num}}">{{num}}</a>
-        {% endifequal %}
-        | 
-    {% endfor %}
-    {% ifnotequal page page_range|last %}
-        <a href="?page={{ next }}">next</a>
-    {% endifnotequal %}
-</div>
-
 {% endblock content %}

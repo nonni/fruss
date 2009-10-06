@@ -1,41 +1,22 @@
-{% load comments %}
 {% block content %}
-<div id="thread-{{ object.id }}">
-    <div id="thread-{{ object.id }}-title">{{ object.title }}</div>
-    <div id="thread-{{ object.id }}-info">{{ object.author }}</div>
-    <div id="thread-{{ object.id }}-body">{{ object.body }}</div>
+
+{% for post in posts.object_list %}
+<div id="post_{{post.id}}">
+    <b>{{ post.title }}</b> by {{ post.author }} on {{ post.date_published }} <br />
+    {{ post.body }}
+    <hr />
 </div>
-<div id="posts">
-    {% get_comment_list for dsf.thread object.id as comment_list %}
-    {% for comment in comment_list %}
-        <div id="comment_{{ comment.id }}">
-            <div id="comment_{{ comment.id }}_info">
-                {{ comment.name|escape }} <br/>
-                on {{ comment.submit_date|date:"F j, Y" }}
-            </div>
-            <div id="comment_{{ comment.id }}_body">
-                {{ comment.comment|escape|urlizetrunc:40|linebreaks }}
-            </div>
-        </div>
-        <hr />
-    {% endfor %}
+{% endfor %}
+
+<div class="pagination">
+    {{ posts }}
 </div>
-<div id="new_new_post">
-</div>
-<div id="new_post">
-    {% get_comment_form for dsf.thread object.id as form %}
-    <form action="{% comment_form_target %}?next={% url thread object.id %}" method="post">
-        {{ form.content_type }}
-        {{ form.object_pk }}
-        {{ form.timestamp }}
-        {{ form.security_hash }}
-        <input type="hidden" name="next" value="{% url thread object.id %}" />
-        <p style="display:none"><label for="id_honeypot">Leave Blank</label>{{ for.honeypot }}</p>
-        <p>
-            <label for="id_comment">Comment</label>
-            {{ form.comment }}
-        </p>
-        <p><input type="submit" name="post" value="Post" /></p>
+
+<div class="new_reply">
+    <form action="." method="POST">
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
     </form>
 </div>
+
 {% endblock content %}

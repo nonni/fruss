@@ -1,5 +1,5 @@
 from django import forms
-from models import Thread, Category
+from models import Post, Category, Thread
 
 class ThreadForm(forms.ModelForm):
     title = forms.CharField()
@@ -9,3 +9,12 @@ class ThreadForm(forms.ModelForm):
     class Meta:
         model = Thread
         fields = ['title', 'body', 'category']
+
+
+class ReplyForm(forms.ModelForm):
+    title = forms.CharField()
+    body = forms.CharField(widget=forms.Textarea())
+    
+    class Meta:
+        model = Post
+        fields = ['body']
