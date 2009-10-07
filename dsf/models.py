@@ -19,6 +19,9 @@ class Thread(models.Model):
     category = models.ForeignKey(Category, related_name="threads")
     title = models.CharField(max_length=200)
 
+    def __unicode__(self):
+        return self.title
+
 class Post(models.Model):
     author = models.ForeignKey(User, related_name="%(class)s_author")
     body = models.TextField()
@@ -28,10 +31,13 @@ class Post(models.Model):
 
     class Meta:
 #        abstract = True
-        ordering = ['-pub_date']
+        ordering = ['pub_date']
         get_latest_by = 'pub_date'
 
-    
+    def __unicode__(self):
+        return '%s - %s' % (self.author, self.body[0:10])
+
+
 """class Thread(Post):
     category = models.ForeignKey(Category, related_name="threads")
 

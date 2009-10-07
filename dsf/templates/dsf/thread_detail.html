@@ -1,15 +1,32 @@
 {% block content %}
 
+<div id="thread_head">
+    {{ thread.category }} - <b>{{ thread.title  }}</b>
+</div>
 {% for post in posts.object_list %}
 <div id="post_{{post.id}}">
-    <b>{{ post.title }}</b> by {{ post.author }} on {{ post.date_published }} <br />
+    <i>by {{ post.author }} on {{ post.pub_date }} </i>
+    <p>
     {{ post.body }}
+    </p>
     <hr />
 </div>
 {% endfor %}
 
 <div class="pagination">
-    {{ posts }}
+    {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}">Previous</a>
+    {% endif %} 
+    {% for page in posts.paginator.page_range %}
+        {% ifequal posts.number page %}
+            {{ page }} 
+        {% else %}
+            <a href="?page={{ page }}">{{ page }}</a>
+        {% endifequal %}
+    {% endfor %}
+    {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}">Next</a>
+    {% endif %}
 </div>
 
 <div class="new_reply">

@@ -8,7 +8,7 @@
         <td>Posts</td>
         <td>Info</td>
     </tr>
-    {% for thread in thread_list %}
+    {% for thread in threads.object_list %}
         <tr>
             <td>{{ thread.category }}</td>
             <td><a href="{% url thread thread.id %}">{{ thread.title }}</a></td>
@@ -18,6 +18,22 @@
                  by {{ tp.author }}</td>
              <td>{{ thread|redchord|escape|striptags }}</td>
         </tr>
-    {% endfor %}
-</table>
+        {% endfor %}
+    </table>
+
+    <div class="pagination">
+        {% if threads.has_previous %}
+            <a href="?page={{ threads.previous_page_number }}">Previous</a>
+        {% endif %} 
+        {% for page in threads.paginator.page_range %}
+            {% ifequal threads.number page %}
+                {{ page }} 
+            {% else %}
+                <a href="?page={{ page }}">{{ page }}</a>
+            {% endifequal %}
+        {% endfor %}
+        {% if threads.has_next %}
+            <a href="?page={{ threads.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
 {% endblock content %}
