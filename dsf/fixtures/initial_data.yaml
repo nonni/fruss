@@ -17,4 +17,73 @@
         name: 'General'
         color: '#CCCCCC'
 
+-   pk: 2
+    model: dsf.Category
+    fields:
+       name: 'Specific'
+       color: '#4A4A4A'
 
+-   pk: 1
+    model: dsf.Thread
+    fields:
+        category: 1
+        title: 'Thread 1'
+
+-   pk: 2
+    model: dsf.Thread
+    fields:
+        category: 1
+        title: 'Thread 2'
+
+-   pk: 3
+    model: dsf.Thread
+    fields:
+        category: 1
+        title: 'Thread 3'
+
+-   pk: 4
+    model: dsf.Thread
+    fields:
+        category: 2
+        title: 'Thread 4'
+
+-   pk: 5
+    model: dsf.Thread
+    fields:
+        category: 1
+        title: 'Thread 5'
+
+-   pk: 1
+    model: dsf.Post
+    fields:
+        author: 1
+        body: 'This is the body of the thread'
+        thread: 1
+
+-   pk: 2
+    model: dsf.Post
+    fields:
+        author: 1
+        body: 'This is the body of the thread'
+        thread: 2
+
+-   pk: 3
+    model: dsf.Post
+    fields:
+        author: 1
+        body: 'This is the body of the thread'
+        thread: 3
+
+-   pk: 4
+    model: dsf.Post
+    fields:
+        author: 1
+        body: 'This is the body of the thread'
+        thread: 4
+
+-   pk: 5
+    model: dsf.Post
+    fields:
+        author: 1
+        body: 'This is the body of the thread'
+        thread: 5
