@@ -9,7 +9,7 @@ def get_threads(request):
     '''
     Returns a list of all threads. Paginated.
     '''
-    thread_list = Thread.objects.all()
+    thread_list = Thread.objects.all().order_by('-pk')
     p = Paginator(thread_list, 2) #2 threads each page
     try:
         page = int(request.GET.get('page', '1'))
