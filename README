@@ -2,15 +2,17 @@ Introduction:
 dsf (django-simple-forum) will be a pluggable forum app.
 
 
-TODO: 
+TODO:
+
+[ ] Beautify the urls /forum/category/thread_id
 
 [ ] Show which threads are new/have been updated 
 
 [ ] User has permissions to post in Category, User has permission to see category.
 
-[ ] Thread list paging
+[x] Thread list paging
 
-[ ] Reply paging
+[x] Reply paging
 
 [ ] Reply moderation, grant comment moderation to owner and staff
 

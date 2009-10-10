@@ -1,10 +1,10 @@
 {% block content %}
 
 <div id="thread_head">
-    {{ thread.category }} - <b>{{ thread.title  }}</b>
+    <a href="/forum">Forum</a> - <i>{{ thread.category }}</i> - <b>{{ thread.title  }}</b>
 </div>
 {% for post in posts.object_list %}
-<div id="post_{{post.id}}">
+<div id="post_{{post.id}}" class="{% cycle 'odd', 'even'%}">
     <i>by {{ post.author }} on {{ post.pub_date }} </i>
     <p>
     {{ post.body }}

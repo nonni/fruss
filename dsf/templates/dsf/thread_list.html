@@ -1,7 +1,7 @@
 {% extends "dsf/base.html" %}
 {% load thread_filters thread_tags %}
 {% block content %}
-<table id="threads">
+<table id="threads" class="thread_list">
     <tr>
         <td>Tags</td>
         <td>Title</td>
@@ -9,14 +9,14 @@
         <td>Info</td>
     </tr>
     {% for thread in threads.object_list %}
-        <tr>
-            <td>{{ thread.category }}</td>
-            <td><a href="{% url thread thread.id %}">{{ thread.title }}</a></td>
-            <td>{{ thread|post_count }}</td>
+        <tr class="{% cycle 'odd' 'even' %}">
+            <td class="CategoryCell">{{ thread.category }}</td>
+            <td class="TitleCell"><a href="{% url thread thread.id %}">{{ thread.title }}</a></td>
+            <td class="PostCell">{{ thread|post_count }}</td>
              {% get_thread_post thread.id as tp  %}
-             <td> {{ tp.pub_date|timesince|upper  }} ago <br />
+             <td class="DateCell"> {{ tp.pub_date|timesince|upper  }} ago <br />
                  by {{ tp.author }}</td>
-             <td>{{ thread|redchord|escape|striptags }}</td>
+             <td class="ChordCell">{{ thread|redchord|escape|striptags }}</td>
         </tr>
         {% endfor %}
     </table>

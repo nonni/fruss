@@ -1,9 +1,24 @@
+{% block head %}
+<link rel="stylesheet" href="/media/css/main.css" />
+<link rel="stylesheet" href="/media/css/buttons.css" />
+<link rel="stylesheet" href="/media/css/crumbs.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="/media/js/buttons.js"></script>
+{% endblock head %}
+
 {% block header %}
-<a href="/forum/">Heim</a> <a href="/forum/new/">Nyr thradur</a> Innskraning Utskraning Nyskraning
+<div id="header" style="height: 45px">
+    <span style="float: left"><a href="/forum/new/" id="newthread" class="btn blue">Nyr thradur</a></span>
+    <span style="float: right"><a href="#" class="btn green">Utskraning</a></span>
+    <a href="/forum/">Heim</a>  Innskraning Utskraning Nyskraning
+</div>
 {% endblock header %}
 
 {% block breadcrumbs %}
-
+<ul id="crumbs">
+    <li><a href="/forum/">Forum Name</a></li>
+    <li>Current Page</li>
+</ul>
 {% endblock breadcrumbs %}
 
 {% block content %}
