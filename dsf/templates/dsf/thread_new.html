@@ -1,5 +1,15 @@
+{% extends "dsf/base.html" %}
+
+{% block breadcrumbs %}
+<ul id="crumbs">
+    <li><a href="/forum/">Forum name</a></li>
+    <li>New thread</li>
+</ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
 <form action="." method="POST">
 {{ form.as_p }}
 <input type="submit" value="Submit" />
 </form>
-
+{% endblock content %}

@@ -18,9 +18,9 @@ TODO:
 
 [ ] User creation, grant user creation permission for staff
 
-[ ] User login
+[x] User login
 
-[ ] User logout
+[x] User logout
 
 [ ] User gravatar
 
