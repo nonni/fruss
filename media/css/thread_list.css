@@ -1,4 +1,59 @@
-.thread_list {
-    width=100%;
-    border=1px;
+ul.thread_list li {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    border-bottom: 1px solid #dedede;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede;
 }
+
+ul.thread_list dt {
+    padding: 4px;
+    padding-left: 13px;
+    width: 46%;
+    display: block;
+    float: left;
+}
+
+ul.thread_list dl {
+    overflow: hidden;
+    min-height: 10px;
+}
+
+ul.thread_list dd
+{
+    display: block;
+    float: left;
+    padding: 4px;
+}
+
+dd.posts {
+    width: 3%;
+}
+
+dd.date {
+    width: 16%;
+    font-size: 13px;
+}
+
+dd.chord {
+    width: 15%;
+}
+
+.odd {
+    background-color: #FAFAFA;
+}
+
+.even {
+    background-color: #FFFFFF;
+}
+
+dl.header {
+    font-size: 13px;
+    font-weight: bold;
+    color: #777;
+}
+            

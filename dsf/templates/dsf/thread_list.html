@@ -1,26 +1,48 @@
 {% extends "dsf/base.html" %}
 {% load thread_filters thread_tags %}
-{% block content %}
-<table id="threads" class="thread_list">
-    <tr>
-        <td>Tags</td>
-        <td>Title</td>
-        <td>Posts</td>
-        <td>Info</td>
-    </tr>
-    {% for thread in threads.object_list %}
-        <tr class="{% cycle 'odd' 'even' %}">
-            <td class="CategoryCell">{{ thread.category }}</td>
-            <td class="TitleCell"><a href="{% url thread thread.id %}">{{ thread.title }}</a></td>
-            <td class="PostCell">{{ thread|post_count }}</td>
-             {% get_thread_post thread.id as tp  %}
-             <td class="DateCell"> {{ tp.pub_date|timesince|upper  }} ago <br />
-                 by {{ tp.author }}</td>
-             <td class="ChordCell">{{ thread|redchord|escape|striptags }}</td>
-        </tr>
-        {% endfor %}
-    </table>
 
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" href="/media/css/thread_list.css" />
+{% endblock head %}
+
+{% block content %}
+<div style="clear:both">
+<div style="clear: both">
+<ul class="thread_list">
+    <li class="row">
+        <dl class="header">
+            <dt title="Post">
+                Title
+            </dt>
+            <dd class="posts">
+                Posts
+            </dd>
+            <dd class="date">
+                Info
+            </dd>
+            <dd class="chord">
+                Last post
+            </dd>
+        </dl>
+    </li>
+    {% for thread in threads.object_list %}
+        <li class="{% cycle 'odd' 'even' %} row">
+            <dl>
+                <dt>
+                    {{ thread.category }}
+                    <a href="{% url thread thread.id %}">{{ thread.title }}</a>
+                </dt>
+                <dd class="posts">{{ thread|post_count }}</dd>
+                {% get_thread_post thread.id as tp  %}
+                <dd class="date"> {{ tp.pub_date|date:"D d M Y" }} <br />
+                    by {{ tp.author }}</dd>
+                <dd class="chord">{{ thread|redchord|escape|striptags }}</dd>
+            </li>
+        </dl>
+    {% endfor %}
+    </ul>
+</div>
     <div class="pagination">
         {% if threads.has_previous %}
             <a href="?page={{ threads.previous_page_number }}">Previous</a>
@@ -36,4 +58,5 @@
             <a href="?page={{ threads.next_page_number }}">Next</a>
         {% endif %}
     </div>
+</div>
 {% endblock content %}

@@ -1,0 +1,66 @@
+body {
+    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+}
+
+#container {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    min-width: 300px;
+    width: 28em;
+}
+
+#header {
+    -moz-background-clip: border;
+    -moz-background-inline-policy: continuous;
+    -moz-background-origin: padding;
+    background-color: #23B0BA;
+    overflow: hidden;
+}
+
+h1 {
+    color: #F4F379;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 8px 0;
+    padding: 0 10px;
+}
+
+form {
+    margin-top: 1em;
+}
+
+.form-row {
+    float: left;
+    padding: 4px 0;
+    width: 100%;
+}
+
+label {
+    color: #333333;
+    float: left;
+    font-size: 1em;
+    line-height: 2em;
+    padding-right: 0.5em;
+    text-align: right;
+    width: 9em;
+}
+
+#id_username, #id_password {
+    width: 14em;
+}
+
+input[type="text"], input[type="password"] {
+    border: 1px solid #CCCCCC;
+}
+
+input {
+    font-family: "Lucida Grande",Verdana,Arial,sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    margin: 2px 0;
+    padding: 2px 3px;
+    vertical-align: middle;
+}
