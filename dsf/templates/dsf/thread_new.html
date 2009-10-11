@@ -1,15 +1,37 @@
 {% extends "dsf/base.html" %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/media/css/thread_new.css" />
+{% endblock head %}
 
 {% block breadcrumbs %}
-<ul id="crumbs">
-    <li><a href="/forum/">Forum name</a></li>
-    <li>New thread</li>
-</ul>
+    <ul id="crumbs">
+        <li><a href="/forum/">Forum name</a></li>
+        <li>New thread</li>
+    </ul>
 {% endblock breadcrumbs %}
 
 {% block content %}
-<form action="." method="POST">
-{{ form.as_p }}
-<input type="submit" value="Submit" />
-</form>
+<div id="container">
+    <form action="." method="POST">
+        <div class="form-row">
+            {{ form.title.errors }}
+            {{ form.title.label_tag }}
+            {{ form.title }}
+        </div>
+        <div class="form-row">
+            {{ form.body.errors }}
+            {{ form.body.label_tag }}
+            {{ form.body }}
+        </div>
+        <div class="form-row">
+            {{ form.category.errors }}
+            {{ form.category.label_tag }}
+            {{ form.category }}
+        </div>
+        <div class=submit-row">
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
 {% endblock content %}

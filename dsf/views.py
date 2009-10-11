@@ -4,14 +4,21 @@ from django.http import HttpResponseRedirect, Http404
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
 from forms import ThreadForm, ReplyForm
-from models import Post, Thread
+from models import Post, Thread, Category
 
 @login_required
-def get_threads(request):
+def get_threads(request, category=None):
     '''
-    Returns a list of all threads. Paginated.
+    Returns a list of all threads in a given category. Paginated.
+    If no category is specified, it returns a list of threads from
+    all categories.
     '''
-    thread_list = Thread.objects.all().order_by('-pk')
+    if category is None:
+        thread_list = Thread.objects.all().order_by('-pk')
+    else:
+        category_id = get_object_or_404(Category, name=category).id
+        thread_list = Thread.objects.all().filter(category=category_id).order_by('-pk')
+
     p = Paginator(thread_list, 5) #5 threads each page
     try:
         page = int(request.GET.get('page', '1'))

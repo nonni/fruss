@@ -6,7 +6,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^forum/', include('fruss.dsf.urls')),
     (r'^admin/', include(admin.site.urls)),
-    (r'^comments/', include('django.contrib.comments.urls')),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
 

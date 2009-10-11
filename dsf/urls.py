@@ -10,5 +10,7 @@ thread_list = {'queryset': Thread.objects.order_by('-pub_date'),
 urlpatterns = patterns('django.views.generic.list_detail',
         url('^$', views.get_threads, name='threads'),
         url('^(?P<thread_id>\d+)/$', views.get_thread_posts, name='thread'),
-        url('^new/$', views.new_thread),
+        url('^new/$', views.new_thread, name='new_thread'),
+        url('^(?P<category>\w+)/$', views.get_threads, name='category_threads'),
+        #TODO: fix url, so f.ex. a category named 'new' can exist.
 )

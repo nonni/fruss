@@ -8,8 +8,8 @@
 
 {% block header %}
 <div id="header" style="height: 45px">
-    <span style="float: left"><a href="/forum/new/" id="newthread" class="btn blue">Nyr thradur</a></span>
-    <span style="float: right"><a href="#" class="btn green">Utskra {{ user.username }}</a></span>
+    <span style="float: left"><a href="{% url new_thread %}" id="newthread" class="btn blue">Nyr thradur</a></span>
+    <span style="float: right"><a href="/accounts/logout/" class="btn green">Utskra {{ user.username }}</a></span>
     Nyskraning
 </div>
 {% endblock header %}

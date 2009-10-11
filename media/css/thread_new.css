@@ -1,0 +1,35 @@
+#container {
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid #dedede;
+}
+
+.form-row {
+    float: left;
+    padding: 4px 0;
+    width: 100%;
+    border-bottom: 1px solid #dedede;
+}
+
+label {
+    color: #333333;
+    float: left;
+    font-size: 1em;
+    line-height: 2em;
+    padding-right: 0.5em;
+    text-align: right;
+    width: 9em;
+}
+
+input[type="text"] {
+    width: 35em;
+    padding: 2px 3px;
+    margin: 3px 0;
+}
+
+textarea {
+    width: 38.5em;
+    padding: 2px 3px;
+    margin: 3px 0;
+}
+
