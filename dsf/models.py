@@ -36,4 +36,8 @@ class Post(models.Model):
     def __unicode__(self):
         return '%s - %s' % (self.author, self.body[0:10])
 
+class UserRead(models.Model):
+    user = models.ForeignKey(User)
+    thread = models.ForeignKey(Thread)
+    read = models.BooleanField(default=False)
 

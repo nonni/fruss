@@ -1,6 +1,6 @@
 import urllib, hashlib
 from django import template
-from dsf.models import Post
+from dsf.models import Post, UserRead
 register = template.Library()
 
 class PostNode(template.Node):
@@ -39,4 +39,17 @@ def gravatar(user, size=60):
         'size':str(size)})
     return """<img src="%s" alt="gravatar for %s" />""" % (gravatar_url, user.username)
 
-register.simple_tag(gravatar) 
+register.simple_tag(gravatar)
+
+def user_has_read(user, thread):
+    '''
+    Returns True if user has 'read' a thread,
+    false if the user has not read it.
+    '''
+    if not UserRead.objects.get_or_create(user=user, thread=thread)[0].read:
+        return "Unread"
+    else:
+        return ""
+        
+
+register.simple_tag(user_has_read)

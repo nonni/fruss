@@ -25,3 +25,7 @@ def thread_redchord(object):
         return object.post_set.latest().body[0:20]
     except:
         return "Post or body not found!"
+
+@register.filter("last_post_id")
+def thread_last_post_id(object):
+    return object.post_set.latest().id

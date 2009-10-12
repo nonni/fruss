@@ -27,11 +27,11 @@
         </dl>
     </li>
     {% for thread in threads.object_list %}
-        <li class="{% cycle 'odd' 'even' %} row">
+        <li class="{% user_has_read user thread %} {% cycle 'odd' 'even' %} row">
             <dl>
                 <dt>
                     {{ thread.category }}
-                    <a href="{% url thread thread.id %}">{{ thread.title }}</a>
+                    <a href="{% url thread thread.id %}?page=last#post_{{ thread|last_post_id }}">{{ thread.title }}</a>
                 </dt>
                 <dd class="posts">{{ thread|post_count }}</dd>
                 {% get_thread_post thread.id as tp  %}

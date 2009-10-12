@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from forms import ThreadForm, ReplyForm
-from models import Post, Thread, Category
+from models import Post, Thread, Category, UserRead
 
 import markdown 
 
@@ -33,13 +33,18 @@ def get_threads(request, category=None):
         raise Http404
 
     print dir(threads)
-    return render_to_response('dsf/thread_list.html', {'threads': threads})
+    return render_to_response('dsf/thread_list.html', {'threads': threads}, context_instance=RequestContext(request))
 
 @login_required
 def get_thread_posts(request, thread_id):
     '''
     Returns all posts in a thread, including the 'thread' post itself.
     '''
+    #Mark thread a read for user.
+    read = UserRead.objects.get_or_create(user=request.user, thread=thread_id)[0]
+    read.read = True
+    read.save()
+
     if request.method == 'POST':
         form = ReplyForm(request.POST)
         if form.is_valid():
@@ -50,6 +55,12 @@ def get_thread_posts(request, thread_id):
             reply.author = request.user
             reply.thread_id = thread_id
             reply.save()
+            form = ReplyForm() #Clear the form
+            #Mark thread as unread for other users
+            ur = UserRead.objects.all().filter(thread__exact=thread_id).exclude(user=request.user)
+            for u in ur:
+                u.read = False
+                u.save()
     else:
         form = ReplyForm()
 
@@ -59,7 +70,7 @@ def get_thread_posts(request, thread_id):
     try:
         page = int(request.GET.get('page', '1'))
     except:
-        page = 1
+        page = p.num_pages
     try:
         posts = p.page(page)
     except (EmptyPage, InvalidPage):
@@ -70,6 +81,7 @@ def get_thread_posts(request, thread_id):
 
 @login_required
 def new_thread(request):
+
     if request.method == 'POST':
         print 'Request is post'
         form = ThreadForm(request.POST)
@@ -85,6 +97,10 @@ def new_thread(request):
             post = Post.objects.create(author=request.user, thread=thread, body=body)
             thread.author = request.user
             thread.save()
+            #Mark thread a read for user.
+            read = UserRead.objects.get_or_create(user=request.user, thread=thread)[0]
+            read.read = True
+            read.save()
             return HttpResponseRedirect('/forum/')
     else:
         form = ThreadForm()
