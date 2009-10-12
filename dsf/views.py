@@ -7,6 +7,8 @@ from django.template import RequestContext
 from forms import ThreadForm, ReplyForm
 from models import Post, Thread, Category
 
+import markdown 
+
 @login_required
 def get_threads(request, category=None):
     '''
@@ -42,6 +44,8 @@ def get_thread_posts(request, thread_id):
         form = ReplyForm(request.POST)
         if form.is_valid():
             reply = form.save(commit = False)
+            if form.data['markdown']:
+                reply.body = markdown.markdown(reply.body)
             #TODO: Check if user is logged in
             reply.author = request.user
             reply.thread_id = thread_id
@@ -73,8 +77,12 @@ def new_thread(request):
             print 'Form is valid'
             data = form.cleaned_data
             #TODO: Check if user is logged in.
+            if data['markdown']:
+                body = markdown.markdown(data['body'])
+            else:
+                body = data['body']
             thread = Thread.objects.create(title=data['title'], category=data['category'])
-            post = Post.objects.create(author=request.user, thread=thread, body=data['body'])
+            post = Post.objects.create(author=request.user, thread=thread, body=body)
             thread.author = request.user
             thread.save()
             return HttpResponseRedirect('/forum/')

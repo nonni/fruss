@@ -27,7 +27,7 @@
         </ul>
     </div>
     <p>
-    {{ post.body }}
+    {{ post.body|safe }}
     </p>
 </div>
 {% endfor %}
@@ -54,6 +54,11 @@
             {{ form.body.errors }}
             {{ form.body.label_tag }}
             {{ form.body }}
+        </div>
+        <div class="form-row">
+            {{ form.markdown.errors }}
+            {{ form.markdown.label_tag }}
+            {{ form.markdown }}
         </div>
         <div class="submit-row">
             <input type="submit" value="Submit" />

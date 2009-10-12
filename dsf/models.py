@@ -30,7 +30,6 @@ class Post(models.Model):
     thread = models.ForeignKey(Thread)
 
     class Meta:
-#        abstract = True
         ordering = ['pub_date']
         get_latest_by = 'pub_date'
 
@@ -38,18 +37,3 @@ class Post(models.Model):
         return '%s - %s' % (self.author, self.body[0:10])
 
 
-"""class Thread(Post):
-    category = models.ForeignKey(Category, related_name="threads")
-
-    def __unicode__(self):
-        return self.title
-
-
-class Reply(Post):
-    thread = models.ForeignKey(Thread)
-
-    class Meta:
-        verbose_name_plural = "Replies"
-
-    def __unicode__(self):
-        return self.title"""

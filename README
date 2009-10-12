@@ -4,7 +4,7 @@ dsf (django-simple-forum) will be a pluggable forum app.
 
 TODO:
 
-[ ] Beautify the urls /forum/category/thread_id
+[x] Beautify the urls /forum/category/thread_id
 
 [ ] Show which threads are new/have been updated 
 
@@ -22,6 +22,6 @@ TODO:
 
 [x] User logout
 
-[ ] User gravatar
+[x] User gravatar
 
 d@W}x?Zc
