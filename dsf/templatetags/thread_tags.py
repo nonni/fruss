@@ -1,3 +1,4 @@
+import urllib, hashlib
 from django import template
 from dsf.models import Post
 register = template.Library()
@@ -25,3 +26,17 @@ def do_get_thread_post(parser, token):
     return PostNode(tokens[1], tokens[3])
 
 register.tag('get_thread_post', do_get_thread_post)
+
+def gravatar(user, size=60):
+    '''
+    Returns a gravatar for a given user.
+    TODO: make it return an empty string if email has no
+          gravatar.
+    '''
+    gravatar_url = "http://www.gravatar.com/avatar.php?"
+    gravatar_url += urllib.urlencode({
+        'gravatar_id':hashlib.md5(user.email).hexdigest(),
+        'size':str(size)})
+    return """<img src="%s" alt="gravatar for %s" />""" % (gravatar_url, user.username)
+
+register.simple_tag(gravatar) 

@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 from forms import ThreadForm, ReplyForm
 from models import Post, Thread, Category
 
@@ -60,7 +61,7 @@ def get_thread_posts(request, thread_id):
     except (EmptyPage, InvalidPage):
         raise Http404
     
-    return render_to_response('dsf/thread_detail.html', {'thread': thread, 'posts': posts, 'form': form})
+    return render_to_response('dsf/thread_detail.html', {'thread': thread, 'posts': posts, 'form': form}, context_instance=RequestContext(request))
     
 
 @login_required
