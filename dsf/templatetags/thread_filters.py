@@ -1,9 +1,10 @@
 from django import template
+import markdown
 register = template.Library()
 
 @register.filter("post_count")
 def thread_post_count(object):
-    return object.post_set.count()
+    return object.post_set.filter(hidden=False).count()
 
 @register.filter("created")
 def thread_created(object):
@@ -29,3 +30,7 @@ def thread_redchord(object):
 @register.filter("last_post_id")
 def thread_last_post_id(object):
     return object.post_set.latest().id
+
+@register.filter("markdown")
+def thread_markdown(object):
+    return markdown.markdown(object)

@@ -1,0 +1,15 @@
+<form action="." method="POST">
+    <div class="form-row">
+        {{ form.body.errors }}
+        {{ form.body }}
+    </div>
+    <div class="form-row">
+        {{ form.markdown.errors }}
+        {{ form.markdown.label_tag }}
+        {{ form.markdown }}
+    </div>
+    <div class="submit-row">
+        <input type="submit" value="Submit" id="edit_submit_{{post_id}}" />
+    </div>
+</form>
+

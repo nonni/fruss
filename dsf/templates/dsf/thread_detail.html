@@ -1,8 +1,9 @@
 {% extends "dsf/base.html" %}
-{% load thread_tags %}
+{% load thread_tags thread_filters %}
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="/media/css/thread_details.css" />
+<script type="text/javascript" src="/media/js/thread_details.js"></script>
 {% endblock head %}
 
 {% block breadcrumbs %}
@@ -24,11 +25,22 @@
             <li>{{ post.author }}</li>
             <li> {% gravatar user %} </li>
             <li>{{ post.pub_date|date:"D d M Y H:i" }}</li>
+            {% if user.is_superuser %}
+                <li id="edit_{{post.pk}}">edit</li>
+                <li id="hide_{{post.pk}}">hide</li>
+            {% else %}
+                {% ifequal user post.author %}
+                    <li id="edit_{{post.pk}}">edit</li>
+                    <li id="hide_{{post.pk}}">hide</li>
+                {% endifequal %}
+            {% endif %}
         </ul>
     </div>
-    <p>
-    {{ post.body|safe }}
-    </p>
+    <div id="post_{{post.id}}_body">
+        <p>
+        {{ post.body|markdown|safe }}
+        </p>
+    </div>
 </div>
 {% endfor %}
 

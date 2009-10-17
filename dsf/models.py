@@ -28,6 +28,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField('Date Published', auto_now=True)
     update = models.DateTimeField('Date Updated', auto_now=True)
     thread = models.ForeignKey(Thread)
+    hidden = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['pub_date']

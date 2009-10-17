@@ -1,13 +1,13 @@
 # Create your views here.
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from forms import ThreadForm, ReplyForm
 from models import Post, Thread, Category, UserRead
 
-import markdown 
+import markdown
 
 @login_required
 def get_threads(request, category=None):
@@ -49,8 +49,9 @@ def get_thread_posts(request, thread_id):
         form = ReplyForm(request.POST)
         if form.is_valid():
             reply = form.save(commit = False)
-            if form.data['markdown']:
-                reply.body = markdown.markdown(reply.body)
+            if not form.data['markdown']:
+                reply.body = "Not markdown " + reply.body + " Not Markdown"
+     
             #TODO: Check if user is logged in
             reply.author = request.user
             reply.thread_id = thread_id
@@ -65,7 +66,7 @@ def get_thread_posts(request, thread_id):
         form = ReplyForm()
 
     thread = get_object_or_404(Thread, pk=thread_id)
-    post_list = Post.objects.all().filter(thread=thread_id)
+    post_list = Post.objects.all().filter(thread=thread_id, hidden=False)
     p = Paginator(post_list, 5)
     try:
         page = int(request.GET.get('page', '1'))
@@ -106,3 +107,42 @@ def new_thread(request):
         form = ThreadForm()
 
     return render_to_response('dsf/thread_new.html', { 'form': form, })
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    #if not request.user is post.author and not request.user.is_superuser:
+    #    return HttpResponse('Access denied!')
+    if request.method == 'POST':
+        form = ReplyForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            if data['markdown']:
+                body = markdown.markdown(data['body'])
+            else:
+                body = data['body']
+            post = get_object_or_404(Post, pk=post_id)
+            post.body = body
+            post.save()
+            return HttpResponse(markdown.markdown(post.body))
+    if request.user.is_superuser or post.author is request.user:
+        form = ReplyForm(post.__dict__)
+        return render_to_response('dsf/post_edit.html', {'form':form, 'post_id':post_id})
+    else:
+        return HttpResponse('Access denied!')
+
+@login_required
+def get_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return HttpResponse(markdown.markdown(post.body))
+
+@login_required
+def hide_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.user.is_superuser or post.author is request.user:
+        post.hidden = True
+        post.save()
+        return HttpResponse('Success')
+    else:
+        return HttpResponse('Access denied!')
+
