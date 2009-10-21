@@ -3,6 +3,7 @@
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="/media/css/thread_details.css" />
+<link rel="stylesheet" href="/media/css/paginator.css" />
 <script type="text/javascript" src="/media/js/thread_details.js"></script>
 {% endblock head %}
 
@@ -45,19 +46,21 @@
 {% endfor %}
 
 <div class="pagination">
+    <ul id="pagination-flickr">
     {% if posts.has_previous %}
-        <a href="?page={{ posts.previous_page_number }}">{% trans "Previous" %}</a>
+        <li class="previous"><a href="?page={{ posts.previous_page_number }}">{% trans "Previous" %}</a></li>
     {% endif %} 
     {% for page in posts.paginator.page_range %}
         {% ifequal posts.number page %}
-            {{ page }} 
+            <li class="active">{{ page }}<li>
         {% else %}
-            <a href="?page={{ page }}">{{ page }}</a>
+            <li><a href="?page={{ page }}">{{ page }}</a></li>
         {% endifequal %}
     {% endfor %}
     {% if posts.has_next %}
-        <a href="?page={{ posts.next_page_number }}">{% trans "Next" %}</a>
+        <li class="next"><a href="?page={{ posts.next_page_number }}">{% trans "Next" %}</a></li>
     {% endif %}
+    </ul>
 </div>
 
 <div class="new_reply rounded_style">

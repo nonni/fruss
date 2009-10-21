@@ -1,12 +1,14 @@
 Introduction:
-dsf (django-simple-forum) will be a pluggable forum app.
+dsf (django-simple-forum) forum app.
 
 
 TODO:
 
+[ ] Beautify the pager
+
 [x] Beautify the urls /forum/category/thread_id
 
-[ ] Show which threads are new/have been updated 
+[x] Show which threads are new/have been updated 
 
 [ ] User has permissions to post in Category, User has permission to see category.
 
@@ -14,7 +16,7 @@ TODO:
 
 [x] Reply paging
 
-[ ] Reply moderation, grant comment moderation to owner and staff
+[x] Reply moderation, grant comment moderation to owner and staff
 
 [ ] User creation, grant user creation permission for staff
 
@@ -23,5 +25,11 @@ TODO:
 [x] User logout
 
 [x] User gravatar
+
+[ ] Add last edited to post
+
+[ ] Search in forum/posts
+
+[ ] Markdown cheatsheet
 
 d@W}x?Zc

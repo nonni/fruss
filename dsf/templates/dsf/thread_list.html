@@ -4,6 +4,7 @@
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="/media/css/thread_list.css" />
+<link rel="stylesheet" href="/media/css/paginator.css" />
 {% endblock head %}
 
 {% block content %}
@@ -47,20 +48,22 @@
     {% endfor %}
     </ul>
 </div>
-    <div class="pagination">
+<div class="pagination">
+    <ul id="pagination-flickr">
         {% if threads.has_previous %}
-            <a href="?page={{ threads.previous_page_number }}">{% trans "Previous" %}</a>
+            <li class="previous"><a href="?page={{ threads.previous_page_number }}">{% trans "Previous" %}</a>
         {% endif %} 
         {% for page in threads.paginator.page_range %}
             {% ifequal threads.number page %}
-                {{ page }} 
+                <li class="active">{{ page }} </li>
             {% else %}
-                <a href="?page={{ page }}">{{ page }}</a>
+                <li><a href="?page={{ page }}">{{ page }}</a></li>
             {% endifequal %}
         {% endfor %}
         {% if threads.has_next %}
-            <a href="?page={{ threads.next_page_number }}">{% trans "Next" %}</a>
+            <li class="next"><a href="?page={{ threads.next_page_number }}">{% trans "Next" %}</a></li>
         {% endif %}
+        </ul>
     </div>
     <div id="categories">
             {% for c in categories reversed %}
