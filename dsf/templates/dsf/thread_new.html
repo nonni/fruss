@@ -1,4 +1,5 @@
 {% extends "dsf/base.html" %}
+{% load i18n %}
 {% block head %}
     {{ block.super }}
     <link rel="stylesheet" href="/media/css/thread_new.css" />
@@ -6,8 +7,8 @@
 
 {% block breadcrumbs %}
     <ul id="crumbs">
-        <li><a href="/forum/">Forum name</a></li>
-        <li>New thread</li>
+        <li><a href="/forum/">{% trans "Index" %}</a></li>
+        <li>{% trans "New thread" %}</li>
     </ul>
 {% endblock breadcrumbs %}
 
@@ -35,7 +36,7 @@
             {{ form.markdown }}
         </div>
         <div class=submit-row">
-            <input type="submit" value="Submit" />
+            <input type="submit" value="{% trans "Submit" %}" />
         </div>
     </form>
 </div>

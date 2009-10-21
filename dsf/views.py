@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+
 from forms import ThreadForm, ReplyForm
 from models import Post, Thread, Category, UserRead
 
@@ -17,10 +18,10 @@ def get_threads(request, category=None):
     all categories.
     '''
     if category is None:
-        thread_list = Thread.objects.all().order_by('-pk')
+        thread_list = Thread.objects.all().order_by('-pk').filter(hidden=False)
     else:
-        category_id = get_object_or_404(Category, name=category).id
-        thread_list = Thread.objects.all().filter(category=category_id).order_by('-pk')
+        category_id = get_object_or_404(Category, slug=category).id
+        thread_list = Thread.objects.all().filter(category=category_id, hidden=False).order_by('-pk')
 
     p = Paginator(thread_list, 5) #5 threads each page
     try:
@@ -32,8 +33,9 @@ def get_threads(request, category=None):
     except (EmptyPage, InvalidPage):
         raise Http404
 
-    print dir(threads)
-    return render_to_response('dsf/thread_list.html', {'threads': threads}, context_instance=RequestContext(request))
+    cats = Category.objects.all()
+
+    return render_to_response('dsf/thread_list.html', {'threads': threads, 'categories': cats}, context_instance=RequestContext(request))
 
 @login_required
 def get_thread_posts(request, thread_id):
@@ -66,6 +68,8 @@ def get_thread_posts(request, thread_id):
         form = ReplyForm()
 
     thread = get_object_or_404(Thread, pk=thread_id)
+    if thread.hidden:
+        raise Http404 
     post_list = Post.objects.all().filter(thread=thread_id, hidden=False)
     p = Paginator(post_list, 5)
     try:
@@ -141,6 +145,10 @@ def hide_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     if request.user.is_superuser or post.author is request.user:
         post.hidden = True
+        th = post.thread
+        if post == th.post_set.all()[0]:
+            th.hidden = True
+            th.save()
         post.save()
         return HttpResponse('Success')
     else:

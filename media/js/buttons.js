@@ -10,8 +10,9 @@ $(document).ready(function(){
             b = $('<a>').insertAfter(this). addClass(this.className).attr('id',this.id).attr('href',this.href);
             $(this).remove();
         }
-        b.text('').css({cursor:'pointer'}). prepend('<i></i>').append($('<span>').
+        b.text(''). prepend('<i></i>').append($('<span>').
         text(tt).append('<i></i><span></span>'));
+        b.attr('style', "cursor: pointer; " + $(this).attr('style'));
     });
 });
 

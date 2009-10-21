@@ -1,5 +1,5 @@
 {% extends "dsf/base.html" %}
-{% load thread_filters thread_tags %}
+{% load thread_filters thread_tags i18n %}
 
 {% block head %}
 {{ block.super }}
@@ -13,16 +13,16 @@
     <li class="row">
         <dl class="header">
             <dt title="Post">
-                Title
+                {% trans "Title" %}
             </dt>
             <dd class="posts">
-                Posts
+                {% trans "Posts" %}
             </dd>
             <dd class="date">
-                Info
+                {% trans "Info" %}
             </dd>
             <dd class="chord">
-                Last post
+                {% trans "Last post" %}
             </dd>
         </dl>
     </li>
@@ -30,14 +30,18 @@
         <li class="{% user_has_read user thread %} {% cycle 'odd' 'even' %} row">
             <dl>
                 <dt>
-                    {{ thread.category }}
-                    <a href="{% url thread thread.id %}?page=last#post_{{ thread|last_post_id }}">{{ thread.title }}</a>
+                    <span style="padding-right: 5px;">
+                        <a href="{% url category_threads thread.category.name|slugify %}" style="background-color: {{thread.category.color}}" class="btn">{{thread.category}}</a>
+                    </span>
+                    <span style="line-height: 27px;">
+                        <a href="{% url thread thread.id %}?page=last#post_{{ thread|last_post_id }}">{{ thread.title }}</a>
+                    </span>
                 </dt>
                 <dd class="posts">{{ thread|post_count }}</dd>
                 {% get_thread_post thread.id as tp  %}
                 <dd class="date"> {{ tp.pub_date|date:"D d M Y" }} <br />
                     by {{ tp.author }}</dd>
-                <dd class="chord">{{ thread|redchord|escape|striptags }}</dd>
+                <dd class="chord">{{ thread|redchord|striptags }}</dd>
             </li>
         </dl>
     {% endfor %}
@@ -45,7 +49,7 @@
 </div>
     <div class="pagination">
         {% if threads.has_previous %}
-            <a href="?page={{ threads.previous_page_number }}">Previous</a>
+            <a href="?page={{ threads.previous_page_number }}">{% trans "Previous" %}</a>
         {% endif %} 
         {% for page in threads.paginator.page_range %}
             {% ifequal threads.number page %}
@@ -55,8 +59,15 @@
             {% endifequal %}
         {% endfor %}
         {% if threads.has_next %}
-            <a href="?page={{ threads.next_page_number }}">Next</a>
+            <a href="?page={{ threads.next_page_number }}">{% trans "Next" %}</a>
         {% endif %}
+    </div>
+    <div id="categories">
+            {% for c in categories reversed %}
+                <span style="padding-left: 3px; float:right;">
+                    <a href="{% url category_threads c.name|slugify %}" style="background-color: {{c.color}}" class="btn">{{c}}</a>
+                </span>
+            {% endfor %}
     </div>
 </div>
 {% endblock content %}

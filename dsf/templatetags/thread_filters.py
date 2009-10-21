@@ -23,7 +23,8 @@ def thread_author(object):
 @register.filter("redchord")
 def thread_redchord(object):
     try:
-        return object.post_set.latest().body[0:20]
+        latest = object.post_set.latest()
+        return ("%s: %s" % (latest.author, latest.body))[0:20]
     except:
         return "Post or body not found!"
 

@@ -15,13 +15,36 @@
     model: dsf.Category
     fields:
         name: 'General'
-        color: '#CCCCCC'
+        color: '#1076A1'
+        slug: 'general'
 
 -   pk: 2
     model: dsf.Category
     fields:
-       name: 'Specific'
-       color: '#4A4A4A'
+       name: 'Plans'
+       color: '#FC9D9A'
+       slug: 'plans'
+
+-   pk: 3
+    model: dsf.Category
+    fields:
+        name: 'Staff'
+        color: '#F3D407'
+        slug: 'staff'
+
+-   pk: 4
+    model: dsf.Category
+    fields:
+        name: 'Classic'
+        color: '#596982'
+        slug: 'classic'
+
+-   pk: 5
+    model: dsf.Category
+    fields:
+        name: 'Football'
+        color: '#000000'
+        slug: 'football'
 
 -   pk: 1
     model: dsf.Thread
@@ -38,7 +61,7 @@
 -   pk: 3
     model: dsf.Thread
     fields:
-        category: 1
+        category: 2
         title: 'Thread 3'
 
 -   pk: 4
@@ -50,7 +73,7 @@
 -   pk: 5
     model: dsf.Thread
     fields:
-        category: 1
+        category: 4
         title: 'Thread 5'
 
 -   pk: 1

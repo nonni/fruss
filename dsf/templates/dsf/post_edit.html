@@ -1,3 +1,4 @@
+{% load i18n %}
 <form action="." method="POST">
     <div class="form-row">
         {{ form.body.errors }}
@@ -9,7 +10,7 @@
         {{ form.markdown }}
     </div>
     <div class="submit-row">
-        <input type="submit" value="Submit" id="edit_submit_{{post_id}}" />
+        <input type="submit" value="{% trans "Submit" %}" id="edit_submit_{{post_id}}" />
     </div>
 </form>
 

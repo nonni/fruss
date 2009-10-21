@@ -1,5 +1,5 @@
 {% extends "dsf/base.html" %}
-{% load thread_tags thread_filters %}
+{% load thread_tags thread_filters i18n %}
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="/media/css/thread_details.css" />
@@ -8,15 +8,15 @@
 
 {% block breadcrumbs %}
     <ul id="crumbs">
-        <li><a href="{% url threads %}">Forum name</a></li>
-        <li><a href="{% url category_threads thread.category %}">{{ thread.category }}</a></li>
+        <li><a href="{% url threads %}">{% trans "Index" %}</a></li>
+        <li><a href="{% url category_threads thread.category.slug %}">{{ thread.category }}</a></li>
         <li>{{ thread.title }}</li>
     </ul>
 {% endblock breadcrumbs %}
 
 {% block content %}
 <div id="thread_head">
-    <h1>{{ thread.title  }} <div style="float:right">page {{ posts.number }} of {{ posts.paginator.num_pages }}</div></h1>
+    <h1>{{ thread.title  }} <div style="float:right">{% trans "page" %} {{ posts.number }} {% trans "of" %} {{ posts.paginator.num_pages }}</div></h1>
 </div>
 {% for post in posts.object_list %}
 <div id="post_{{post.id}}" class="rounded_style {% cycle odd,even%}">
@@ -26,12 +26,12 @@
             <li> {% gravatar user %} </li>
             <li>{{ post.pub_date|date:"D d M Y H:i" }}</li>
             {% if user.is_superuser %}
-                <li id="edit_{{post.pk}}">edit</li>
-                <li id="hide_{{post.pk}}">hide</li>
+                <li id="edit_{{post.pk}}">{% trans "edit" %}</li>
+                <li id="hide_{{post.pk}}">{% trans "hide" %}</li>
             {% else %}
                 {% ifequal user post.author %}
-                    <li id="edit_{{post.pk}}">edit</li>
-                    <li id="hide_{{post.pk}}">hide</li>
+                    <li id="edit_{{post.pk}}">{% trans "edit" %}</li>
+                    <li id="hide_{{post.pk}}">{% trans "hide" %}</li>
                 {% endifequal %}
             {% endif %}
         </ul>
@@ -46,7 +46,7 @@
 
 <div class="pagination">
     {% if posts.has_previous %}
-        <a href="?page={{ posts.previous_page_number }}">Previous</a>
+        <a href="?page={{ posts.previous_page_number }}">{% trans "Previous" %}</a>
     {% endif %} 
     {% for page in posts.paginator.page_range %}
         {% ifequal posts.number page %}
@@ -56,7 +56,7 @@
         {% endifequal %}
     {% endfor %}
     {% if posts.has_next %}
-        <a href="?page={{ posts.next_page_number }}">Next</a>
+        <a href="?page={{ posts.next_page_number }}">{% trans "Next" %}</a>
     {% endif %}
 </div>
 
@@ -73,7 +73,7 @@
             {{ form.markdown }}
         </div>
         <div class="submit-row">
-            <input type="submit" value="Submit" />
+            <input type="submit" value="{% trans "Submit" %}" />
         </div>
     </form>
 </div>

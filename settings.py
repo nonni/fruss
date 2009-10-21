@@ -91,3 +91,5 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
         "django.core.context_processors.i18n",
         "django.core.context_processors.media")
 
+EMAIL_HOST = 'mail.internet.is'
+DEFAULT_FROM_EMAIL = 'webmaster@haskell.is'

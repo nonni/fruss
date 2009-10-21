@@ -1,3 +1,4 @@
+{% load i18n %}
 {% block head %}
 <link rel="stylesheet" href="/media/css/main.css" />
 <link rel="stylesheet" href="/media/css/buttons.css" />
@@ -7,17 +8,17 @@
 {% endblock head %}
 
 {% block header %}
-<div id="header" style="height: 45px">
-    <span style="float: left"><a href="{% url new_thread %}" id="newthread" class="btn blue">Nyr thradur</a></span>
-    <span style="float: right"><a href="/accounts/logout/" class="btn green">Utskra {{ user.username }}</a></span>
-    Nyskraning
+<div id="header" style="height: 45px; text-align:center">
+    <span style="float: left"><a href="{% url new_thread %}" id="newthread" class="btn blue">{% trans "New thread" %}</a></span>
+    <span style="float: right"><a href="/accounts/logout/" class="btn green">{% trans "Logout" %} {{ user.username }}</a></span>
+    UNI
 </div>
 {% endblock header %}
 
 {% block breadcrumbs %}
 <ul id="crumbs">
-    <li><a href="/forum/">Forum Name</a></li>
-    <li>Current Page</li>
+    <li><a href="/forum/">{% trans "Index" %}</a></li>
+    <li>{% trans "Overview" %}</li>
 </ul>
 {% endblock breadcrumbs %}
 

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.template.defaultfilters import slugify
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
@@ -8,9 +8,15 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=7)
+    slug = models.SlugField(max_length=100, blank=True)
 
     class Meta:
         verbose_name_plural = "Categories"
+
+    def save(self):
+        if not self.id:
+            self.slug = slugify(self.name)
+        super(Category, self).save()
 
     def __unicode__(self):
         return self.name
@@ -18,6 +24,7 @@ class Category(models.Model):
 class Thread(models.Model):
     category = models.ForeignKey(Category, related_name="threads")
     title = models.CharField(max_length=200)
+    hidden = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.title
