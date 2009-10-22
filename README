@@ -2,9 +2,9 @@ Introduction:
 dsf (django-simple-forum) forum app.
 
 
-TODO:
+TODO for v0.1:
 
-[ ] Beautify the pager
+[x] Beautify the pager
 
 [x] Beautify the urls /forum/category/thread_id
 
@@ -26,10 +26,28 @@ TODO:
 
 [x] User gravatar
 
+[ ] Focus on new post if user posts a reply
+
+[ ] If markdown is not chosen, <pre> post.
+
 [ ] Add last edited to post
+
+[ ] Markdown cheatsheet
+
+[ ] User can choose not to see threads in category in index.
+
+[ ] User can push a 'have read' button in thread list to 'read' thread, without opening it.
+
+[ ] Encourage users to get gravatar.
+
+[ ] Allow user to change between available translations
 
 [ ] Search in forum/posts
 
-[ ] Markdown cheatsheet
+[ ] Refactor for release
+
+TODO future:
+
+[ ] Smilies
 
 d@W}x?Zc
