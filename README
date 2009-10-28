@@ -18,8 +18,6 @@ TODO for v0.1:
 
 [x] Reply moderation, grant comment moderation to owner and staff
 
-[ ] User creation, grant user creation permission for staff
-
 [x] User login
 
 [x] User logout
@@ -42,12 +40,15 @@ TODO for v0.1:
 
 [ ] Allow user to change between available translations
 
-[ ] Search in forum/posts
-
 [ ] Refactor for release
 
 TODO future:
 
 [ ] Smilies
+
+[ ] Search in forum/posts
+
+[ ] User creation, grant user creation permission for staff (done in admin for now)
+
 
 d@W}x?Zc

@@ -2,18 +2,26 @@ from django.db import models
 from django.template.defaultfilters import slugify
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
+from django.contrib.contenttypes.models import ContentType
 
+from fruss.shaker.models import PermissionMixIn
 
-class Category(models.Model):
+class Category(PermissionMixIn):
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=7)
     slug = models.SlugField(max_length=100, blank=True)
 
+    instance_permissions = (
+            ("can_view_", "Can view "),
+            ("can_write_", "Can Write "),
+    )
+
     class Meta:
         verbose_name_plural = "Categories"
-
+        
     def save(self):
+        print "IN CATEGORY SAVE"
         if not self.id:
             self.slug = slugify(self.name)
         super(Category, self).save()

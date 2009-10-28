@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.comments',
     'dsf',
+    'shaker',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
