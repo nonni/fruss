@@ -14,6 +14,8 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
+{% include "dsf/markdown_cs.html" %}
+
 <div id="container">
     <form action="." method="POST">
         <div class="form-row">
@@ -40,6 +42,5 @@
             <input type="submit" value="{% trans "Submit" %}" />
         </div>
     </form>
-    {% include "dsf/markdown_cs.html" %}
 </div>
 {% endblock content %}

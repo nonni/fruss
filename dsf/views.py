@@ -21,6 +21,7 @@ def get_threads(request, category=None):
         thread_list = Thread.objects.all().order_by('-pk').filter(hidden=False)
     else:
         category_id = get_object_or_404(Category, slug=category).id
+        #TODO: Does not bump threads with new replies!
         thread_list = Thread.objects.all().filter(category=category_id, hidden=False).order_by('-pk')
 
     p = Paginator(thread_list, 5) #5 threads each page

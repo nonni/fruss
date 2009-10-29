@@ -24,13 +24,17 @@ TODO for v0.1:
 
 [x] User gravatar
 
+[ ] Does not bump threads with new replies
+
+[ ] Breadcrumbs when user selects category should reflect that.
+
 [ ] Focus on new post if user posts a reply
 
 [ ] If markdown is not chosen, <pre> post.
 
 [ ] Add last edited to post
 
-[ ] Markdown cheatsheet
+[x] Markdown cheatsheet
 
 [ ] User can choose not to see threads in category in index.
 

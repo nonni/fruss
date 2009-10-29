@@ -1,9 +1,20 @@
 #cheatsheet {
+    margin-top:7px;
     font-size: 0.8em;
+    float: right;
+    width: 21%;
 }
 
 #cheatsheet h3 {
     font-size: 1em;
+}
+
+#cheatsheet pre {
+    background-color: #F5F5F5;
+    border: 1px solid #CCCCCC;
+    line-height: 12px;
+    margin-top: 0px;
+    padding: 4px;
 }
 
 

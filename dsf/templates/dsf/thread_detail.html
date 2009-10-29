@@ -4,6 +4,7 @@
 {{ block.super }}
 <link rel="stylesheet" href="/media/css/thread_details.css" />
 <link rel="stylesheet" href="/media/css/paginator.css" />
+<link rel="stylesheet" href="/media/css/markdown_help.css" />
 <script type="text/javascript" src="/media/js/thread_details.js"></script>
 {% endblock head %}
 
@@ -64,6 +65,7 @@
 </div>
 
 <div class="new_reply rounded_style">
+    {% include "dsf/markdown_cs.html" %}
     <form action="." method="POST">
         <div class="form-row">
             {{ form.body.errors }}

@@ -1,7 +1,8 @@
 #container {
     margin-top: 20px;
-    width: 100%;
+    width:78%;
     border: 1px solid #dedede;
+    float: left;
 }
 
 .form-row {
