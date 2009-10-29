@@ -6,8 +6,8 @@ from django.template.defaultfilters import slugify
 class PermissionMixIn(models.Model):
     
     def save(self, *args, **kwargs):
-         if not self.id and hasattr(self, 'instance_permissions'):
-             for perm in self.instance_permissions:
+        if not self.id and hasattr(self, 'instance_permissions'):
+            for perm in self.instance_permissions:
                 p = Permission()
                 p.codename = '%s%s' % (perm[0], self.slug)
                 p.name = '%s%s' % (perm[1], self.name)

@@ -3,6 +3,7 @@
 {% block head %}
     {{ block.super }}
     <link rel="stylesheet" href="/media/css/thread_new.css" />
+    <link rel="stylesheet" href="/media/css/markdown_help.css" />
 {% endblock head %}
 
 {% block breadcrumbs %}
@@ -39,5 +40,6 @@
             <input type="submit" value="{% trans "Submit" %}" />
         </div>
     </form>
+    {% include "dsf/markdown_cs.html" %}
 </div>
 {% endblock content %}
