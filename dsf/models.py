@@ -33,6 +33,10 @@ class Thread(models.Model):
     category = models.ForeignKey(Category, related_name="threads")
     title = models.CharField(max_length=200)
     hidden = models.BooleanField(default=False)
+    latest_post = models.ForeignKey('Post', related_name="latest_post", null=True)
+
+    class Meta:
+        ordering = ['-latest_post__pub_date']
 
     def __unicode__(self):
         return self.title
@@ -40,10 +44,11 @@ class Thread(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(User, related_name="%(class)s_author")
     body = models.TextField()
-    pub_date = models.DateTimeField('Date Published', auto_now=True)
-    update = models.DateTimeField('Date Updated', auto_now=True)
+    pub_date = models.DateTimeField('Date Published')
+    update = models.DateTimeField('Date Updated')
     thread = models.ForeignKey(Thread)
     hidden = models.BooleanField(default=False)
+    markdown = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['pub_date']

@@ -40,8 +40,18 @@
     </div>
     <div id="post_{{post.id}}_body">
         <p>
-        {{ post.body|markdown|safe }}
+        {% if post.markdown %}
+            {{ post.body|markdown|safe }}
+        {% else %}
+            {{ post.body|linebreaksbr }}
+        {% endif %}
         </p>
+        {% ifnotequal post.pub_date|date:"D d M Y H:i"  post.update|date:"D d M Y H:i"  %}
+        <p>
+        Last updated {{ post.update|date:"D d M Y H:i" }}
+        </p>
+        {% endifnotequal %}
+
     </div>
 </div>
 {% endfor %}

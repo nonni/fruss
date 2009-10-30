@@ -1,4 +1,5 @@
 # Create your views here.
+from datetime import datetime
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
@@ -18,11 +19,10 @@ def get_threads(request, category=None):
     all categories.
     '''
     if category is None:
-        thread_list = Thread.objects.all().order_by('-pk').filter(hidden=False)
+        thread_list = Thread.objects.all().filter(hidden=False)
     else:
         category_id = get_object_or_404(Category, slug=category).id
-        #TODO: Does not bump threads with new replies!
-        thread_list = Thread.objects.all().filter(category=category_id, hidden=False).order_by('-pk')
+        thread_list = Thread.objects.all().filter(category=category_id, hidden=False)
 
     p = Paginator(thread_list, 5) #5 threads each page
     try:
@@ -36,13 +36,17 @@ def get_threads(request, category=None):
 
     cats = Category.objects.all()
 
-    return render_to_response('dsf/thread_list.html', {'threads': threads, 'categories': cats}, context_instance=RequestContext(request))
+    return render_to_response('dsf/thread_list.html', {'threads': threads, 'categories': cats, 'category': category}, context_instance=RequestContext(request))
 
 @login_required
 def get_thread_posts(request, thread_id):
     '''
     Returns all posts in a thread, including the 'thread' post itself.
     '''
+    thread = get_object_or_404(Thread, pk=thread_id)
+    if thread.hidden:
+        raise Http404 
+
     #Mark thread a read for user.
     read = UserRead.objects.get_or_create(user=request.user, thread=thread_id)[0]
     read.read = True
@@ -52,25 +56,26 @@ def get_thread_posts(request, thread_id):
         form = ReplyForm(request.POST)
         if form.is_valid():
             reply = form.save(commit = False)
-            if not form.data['markdown']:
-                reply.body = "Not markdown " + reply.body + " Not Markdown"
-     
+
             #TODO: Check if user is logged in
             reply.author = request.user
             reply.thread_id = thread_id
+            reply.pub_date = datetime.now()
+            reply.update = datetime.now()
             reply.save()
+            thread.latest_post = reply
+            thread.save()
             form = ReplyForm() #Clear the form
             #Mark thread as unread for other users
             ur = UserRead.objects.all().filter(thread__exact=thread_id).exclude(user=request.user)
             for u in ur:
                 u.read = False
                 u.save()
+            #Focus on new post after reply.
+            return HttpResponseRedirect('/forum/%s/?page=last#post_%s' % (thread.id, reply.id))
     else:
         form = ReplyForm()
 
-    thread = get_object_or_404(Thread, pk=thread_id)
-    if thread.hidden:
-        raise Http404 
     post_list = Post.objects.all().filter(thread=thread_id, hidden=False)
     p = Paginator(post_list, 5)
     try:
@@ -94,14 +99,12 @@ def new_thread(request):
         if form.is_valid():
             print 'Form is valid'
             data = form.cleaned_data
-            #TODO: Check if user is logged in.
-            if data['markdown']:
-                body = markdown.markdown(data['body'])
-            else:
-                body = data['body']
+            body = data['body']
             thread = Thread.objects.create(title=data['title'], category=data['category'])
-            post = Post.objects.create(author=request.user, thread=thread, body=body)
+            post = Post.objects.create(author=request.user, thread=thread, body=body, pub_date=datetime.now(), update=datetime.now(), markdown=data['markdown'])
+            post.save()
             thread.author = request.user
+            thread.latest_post = post
             thread.save()
             #Mark thread a read for user.
             read = UserRead.objects.get_or_create(user=request.user, thread=thread)[0]
@@ -122,12 +125,11 @@ def edit_post(request, post_id):
         form = ReplyForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            if data['markdown']:
-                body = markdown.markdown(data['body'])
-            else:
-                body = data['body']
+            body = data['body']
             post = get_object_or_404(Post, pk=post_id)
             post.body = body
+            post.markdown = data['markdown']
+            post.update = datetime.now()
             post.save()
             return HttpResponse(markdown.markdown(post.body))
     if request.user.is_superuser or post.author is request.user:

@@ -7,6 +7,15 @@
 <link rel="stylesheet" href="/media/css/paginator.css" />
 {% endblock head %}
 
+{% if category %}
+    {% block breadcrumbs %}
+        <ul id="crumbs">
+            <li><a href="/forum/">{% trans "Index" %}</a></li>
+            <li><a href="{% url category_threads category %}">{{ threads.object_list.0.category }}</a></li>
+            <li>{% trans "Overview" %}</li>
+        </ul>
+    {% endblock breadcrumbs %}
+{% endif %}
 {% block content %}
 <div style="clear:both">
 <div style="clear: both">

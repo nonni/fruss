@@ -1,5 +1,5 @@
 Introduction:
-dsf (django-simple-forum) forum app.
+dsf (django-simple-forum) forum app inspired by django-nag and phpbb.
 
 
 TODO for v0.1:
@@ -24,15 +24,15 @@ TODO for v0.1:
 
 [x] User gravatar
 
-[ ] Does not bump threads with new replies
+[x] Does not bump threads with new replies
 
-[ ] Breadcrumbs when user selects category should reflect that.
+[x] Breadcrumbs when user selects category should reflect that.
 
-[ ] Focus on new post if user posts a reply
+[x] Focus on new post if user posts a reply
 
-[ ] If markdown is not chosen, <pre> post.
+[x] If markdown is not chosen, <pre> post.
 
-[ ] Add last edited to post
+[x] Add last edited to post
 
 [x] Markdown cheatsheet
 
@@ -42,7 +42,9 @@ TODO for v0.1:
 
 [ ] Encourage users to get gravatar.
 
-[ ] Allow user to change between available translations
+[ ] Finish translation code and allow user to change between available translations
+
+[ ] Decouple urls in views 
 
 [ ] Refactor for release
 
