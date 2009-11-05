@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from django.utils.translation import ugettext as _
 
 from forms import ThreadForm, ReplyForm
 from models import Post, Thread, Category, UserRead
@@ -94,10 +95,8 @@ def get_thread_posts(request, thread_id):
 def new_thread(request):
 
     if request.method == 'POST':
-        print 'Request is post'
         form = ThreadForm(request.POST)
         if form.is_valid():
-            print 'Form is valid'
             data = form.cleaned_data
             body = data['body']
             thread = Thread.objects.create(title=data['title'], category=data['category'])
@@ -136,7 +135,7 @@ def edit_post(request, post_id):
         form = ReplyForm(post.__dict__)
         return render_to_response('dsf/post_edit.html', {'form':form, 'post_id':post_id})
     else:
-        return HttpResponse('Access denied!')
+        return HttpResponse(_('Access denied!'))
 
 @login_required
 def get_post(request, post_id):
@@ -153,9 +152,9 @@ def hide_post(request, post_id):
             th.hidden = True
             th.save()
         post.save()
-        return HttpResponse('Success')
+        return HttpResponse(_('Success'))
     else:
-        return HttpResponse('Access denied!')
+        return HttpResponse(_('Access denied!'))
 
 @login_required
 def set_read(request, thread_id):
@@ -163,4 +162,4 @@ def set_read(request, thread_id):
     read = UserRead.objects.get_or_create(user=request.user, thread=thread_id)[0]
     read.read = True
     read.save()
-    return HttpResponse('Success');
+    return HttpResponse(_('Success'));

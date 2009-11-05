@@ -1,48 +1,48 @@
-
+{% load i18n %}
 <div id="cheatsheet">
-    <h3>Markdown Syntax</h3>
-    <h3>Phrase Emphasis</h3>
+    <h3>{% trans "Markdown Syntax" %}</h3>
+    <h3>{% trans "Phrase Emphasis" %}</h3>
     <pre>
-  <code>*italic*  **bold** 
-  _italic_  __bold__</code>
+  <code>{% blocktrans %}*italic*  **bold** 
+  _italic_  __bold__{% endblocktrans %}</code>
     </pre>
-    <h3>Links</h3>
+    <h3>{% trans "Links" %}</h3>
     <pre>
-  <code>An [example](http://url.com/)</code>
+  <code>{% trans "An [example](http://url.com/)" %}</code>
     </pre>
-    <h3>Images</h3>
+    <h3>{% trans "Images" %}</h3>
     <pre>
-  <code>![alt text](/path/img.jpg)</code>
+  <code>{% trans "![alt text](/path/img.jpg)" %}</code>
     </pre>
-    <h3>Headers</h3>
+    <h3>{% trans "Headers" %}</h3>
     <pre>
-  <code>Header 1 
+  <code>{% blocktrans %}Header 1 
   ======= 
   Header 2 
-  ---------</code>
+  ---------{% endblocktrans %}</code>
     </pre>
     <pre>
-  <code># Header 1 # 
+  <code>{% blocktrans %}# Header 1 # 
   ## Header 2 ## 
-  ###### Header 6</code>
+  ###### Header 6{% endblocktrans %}</code>
     </pre>
-    <h3>Lists</h3>
+    <h3>{% trans "Lists" %}</h3>
     <pre>
-  <code>1. Foo 
-  2. Bar </code>
+  <code>{% blocktrans %}1. Foo 
+  2. Bar{% endblocktrans %}</code>
     </pre>
     <pre>
-  <code>* Item 1 
-  * Item 2</code>
+  <code>{% blocktrans %}* Item 1 
+  * Item 2{% endblocktrans %}</code>
     </pre>
-    <h3>Horizontal Ruler</h3>
+    <h3>{% trans "Horizontal Ruler" %}</h3>
     <pre>
   <code>---</code>
     </pre>
-    <h3>Manual Line Breaks</h3>
-End a line with two or more spaces:
+    <h3>{% trans "Manual Line Breaks" %}</h3>
+    {% blocktrans %}End a line with two or more spaces:
 <pre>
   <code>Roses are red    
-  Violets are blue.</code>
+  Violets are blue.</code>{% endblocktrans %}
 </pre>
 </div>

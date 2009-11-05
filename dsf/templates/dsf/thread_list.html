@@ -12,7 +12,9 @@
     {% block breadcrumbs %}
         <ul id="crumbs">
             <li><a href="/forum/">{% trans "Index" %}</a></li>
+            {% if category %}
             <li><a href="{% url category_threads category %}">{{ threads.object_list.0.category }}</a></li>
+            {% endif %}
             <li>{% trans "Overview" %}</li>
         </ul>
     {% endblock breadcrumbs %}
@@ -52,7 +54,7 @@
                 <dd class="posts">{{ thread|post_count }}</dd>
                 {% get_thread_post thread.id as tp  %}
                 <dd class="date"> {{ tp.pub_date|date:"D d M Y" }} <br />
-                    by {{ tp.author }}</dd>
+                    {% trans "by" %} {{ tp.author }}</dd>
                 <dd class="chord">{{ thread|redchord|striptags }}</dd>
             </li>
         </dl>

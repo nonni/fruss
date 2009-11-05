@@ -64,6 +64,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'fruss.urls'
@@ -91,6 +92,11 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
         "django.core.context_processors.debug",
         "django.core.context_processors.i18n",
         "django.core.context_processors.media")
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('is', 'Icelandic'),
+)
 
 EMAIL_HOST = 'mail.internet.is'
 DEFAULT_FROM_EMAIL = 'webmaster@haskell.is'

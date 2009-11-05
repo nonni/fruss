@@ -36,7 +36,7 @@ TODO for v0.1:
 
 [x] User can push a 'have read' button in thread list to 'read' thread, without opening it.
 
-[ ] Encourage users to get gravatar.
+[v] Encourage users to get gravatar.
 
 [ ] Finish translation code and allow user to change between available translations
 

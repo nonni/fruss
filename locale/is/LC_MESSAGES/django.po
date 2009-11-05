@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-21 01:24+0000\n"
+"POT-Creation-Date: 2009-11-05 23:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,80 +16,219 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dsf/templates/dsf/base.html:12 dsf/templates/dsf/thread_new.html:10
-msgid "New thread"
-msgstr ""
+#: dsf/models.py:21
+msgid "Category"
+msgstr "Flokkur"
 
-#: dsf/templates/dsf/base.html:13
-msgid "Logout"
-msgstr ""
+#: dsf/models.py:22
+msgid "Categories"
+msgstr "Flokkar"
 
-#: dsf/templates/dsf/base.html:20 dsf/templates/dsf/thread_detail.html:11
-#: dsf/templates/dsf/thread_new.html:9
-msgid "Index"
-msgstr ""
+#: dsf/models.py:41
+msgid "Thread"
+msgstr "Þráður"
 
-#: dsf/templates/dsf/post_edit.html:13 dsf/templates/dsf/thread_detail.html:76
-#: dsf/templates/dsf/thread_new.html:38
-msgid "Submit"
-msgstr ""
+#: dsf/models.py:42
+msgid "Threads"
+msgstr "Þræðir"
 
-#: dsf/templates/dsf/thread_detail.html:19
-msgid "page"
-msgstr ""
+#: dsf/models.py:57
+msgid "Date Published"
+msgstr "Útgáfudagur"
 
-#: dsf/templates/dsf/thread_detail.html:19
-msgid "of"
-msgstr ""
+#: dsf/models.py:58
+msgid "Date Updated"
+msgstr "Seinast Uppfært"
 
-#: dsf/templates/dsf/thread_detail.html:29
-#: dsf/templates/dsf/thread_detail.html:33
-msgid "edit"
-msgstr ""
+#: dsf/models.py:66
+msgid "Post"
+msgstr "Skrif"
 
-#: dsf/templates/dsf/thread_detail.html:30
-#: dsf/templates/dsf/thread_detail.html:34
-msgid "hide"
-msgstr ""
-
-#: dsf/templates/dsf/thread_detail.html:49
-#: dsf/templates/dsf/thread_list.html:52
-msgid "Previous"
-msgstr ""
-
-#: dsf/templates/dsf/thread_detail.html:59
-#: dsf/templates/dsf/thread_list.html:62
-msgid "Next"
-msgstr ""
-
-#: dsf/templates/dsf/thread_list.html:16
-msgid "Title"
-msgstr ""
-
-#: dsf/templates/dsf/thread_list.html:19
+#: dsf/models.py:67 dsf/templates/dsf/thread_list.html:30
 msgid "Posts"
+msgstr "Skrif"
+
+#: dsf/views.py:138 dsf/views.py:157
+msgid "Access denied!"
+msgstr "Aðgangur bannaður"
+
+#: dsf/views.py:155 dsf/views.py:165
+msgid "Success"
+msgstr "Aðgerð heppnaðist"
+
+#: dsf/templates/dsf/base.html:13 dsf/templates/dsf/thread_new.html:12
+msgid "New thread"
+msgstr "Nýr Þráður"
+
+#: dsf/templates/dsf/base.html:14
+msgid "Logout"
+msgstr "Útskrá"
+
+#: dsf/templates/dsf/base.html:21 dsf/templates/dsf/thread_detail.html:13
+#: dsf/templates/dsf/thread_list.html:14 dsf/templates/dsf/thread_new.html:11
+msgid "Index"
+msgstr "Heim"
+
+#: dsf/templates/dsf/base.html:22 dsf/templates/dsf/thread_list.html:16
+msgid "Overview"
+msgstr "Yfirlit"
+
+#: dsf/templates/dsf/markdown_cs.html:3
+msgid "Markdown Syntax"
+msgstr "Markdown leiðbeiningar"
+
+#: dsf/templates/dsf/markdown_cs.html:4
+msgid "Phrase Emphasis"
 msgstr ""
 
-#: dsf/templates/dsf/thread_list.html:22
+#: dsf/templates/dsf/markdown_cs.html:6
+msgid ""
+"*italic*  **bold** \n"
+"  _italic_  __bold__"
+msgstr ""
+"*skáletrað*  **feitletrað** \n"
+"  _skáletrað_  __feitletrað__"
+
+#: dsf/templates/dsf/markdown_cs.html:9
+msgid "Links"
+msgstr "Hlekkir"
+
+#: dsf/templates/dsf/markdown_cs.html:11
+msgid "An [example](http://url.com/)"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:13
+msgid "Images"
+msgstr "Myndir"
+
+#: dsf/templates/dsf/markdown_cs.html:15
+msgid "![alt text](/path/img.jpg)"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:17
+msgid "Headers"
+msgstr "Hausar"
+
+#: dsf/templates/dsf/markdown_cs.html:19
+msgid ""
+"Header 1 \n"
+"  ======= \n"
+"  Header 2 \n"
+"  ---------"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:25
+msgid ""
+"# Header 1 # \n"
+"  ## Header 2 ## \n"
+"  ###### Header 6"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:29
+msgid "Listar"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:31
+msgid ""
+"1. Foo \n"
+"  2. Bar"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:35
+msgid ""
+"* Item 1 \n"
+"  * Item 2"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:38
+msgid "Horizontal Ruler"
+msgstr "Lárétt strik"
+
+#: dsf/templates/dsf/markdown_cs.html:42
+msgid "Manual Line Breaks"
+msgstr ""
+
+#: dsf/templates/dsf/markdown_cs.html:43
+msgid ""
+"End a line with two or more spaces:\n"
+"<pre>\n"
+"  <code>Roses are red    \n"
+"  Violets are blue.</code>"
+msgstr ""
+
+#: dsf/templates/dsf/post_edit.html:13 dsf/templates/dsf/thread_detail.html:91
+#: dsf/templates/dsf/thread_new.html:42
+msgid "Submit"
+msgstr "Skrá"
+
+#: dsf/templates/dsf/thread_detail.html:21
+msgid "page"
+msgstr "síða"
+
+#: dsf/templates/dsf/thread_detail.html:21
+msgid "of"
+msgstr "af"
+
+#: dsf/templates/dsf/thread_detail.html:31
+#: dsf/templates/dsf/thread_detail.html:35
+msgid "edit"
+msgstr "breyta"
+
+#: dsf/templates/dsf/thread_detail.html:32
+#: dsf/templates/dsf/thread_detail.html:36
+msgid "hide"
+msgstr "fela"
+
+#: dsf/templates/dsf/thread_detail.html:62
+#: dsf/templates/dsf/thread_list.html:65
+msgid "Previous"
+msgstr "Fyrri"
+
+#: dsf/templates/dsf/thread_detail.html:72
+#: dsf/templates/dsf/thread_list.html:75
+msgid "Next"
+msgstr "Næsta"
+
+#: dsf/templates/dsf/thread_list.html:27
+msgid "Title"
+msgstr "Titill"
+
+#: dsf/templates/dsf/thread_list.html:33
 msgid "Info"
-msgstr ""
+msgstr "Upplýsingar"
 
-#: dsf/templates/dsf/thread_list.html:25
+#: dsf/templates/dsf/thread_list.html:36
 msgid "Last post"
-msgstr ""
+msgstr "Seinustu skrif"
+
+#: dsf/templates/dsf/thread_list.html:55
+msgid "by"
+msgstr "eftir"
+
+#: dsf/templatetags/thread_filters.py:18
+msgid "Post not found"
+msgstr "Fann ekki skrif"
+
+#: dsf/templatetags/thread_filters.py:25
+msgid "Post or author not found!"
+msgstr "Skrif eða höfundur fannst ekki!"
+
+#: dsf/templatetags/thread_filters.py:33
+msgid "Post or body not found!"
+msgstr "Skrif eða höfundur fannst ekki!"
 
 #: templates/registration/logged_out.html:2
 msgid "Logged out"
-msgstr ""
+msgstr "Úskráð(ur)"
 
 #: templates/registration/logged_out.html:3
 msgid "home"
-msgstr ""
+msgstr "heim"
 
 #: templates/registration/login.html:9 templates/registration/login.html:28
 msgid "login"
-msgstr ""
+msgstr "innskrá"
 
 #: templates/registration/login.html:15
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Innslegið notendanafn og lykilorð er ekki til. Vinsamlegast reynið aftur."

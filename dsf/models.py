@@ -18,10 +18,10 @@ class Category(PermissionMixIn):
     )
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
         
     def save(self):
-        print "IN CATEGORY SAVE"
         if not self.id:
             self.slug = slugify(self.name)
         super(Category, self).save()
@@ -38,6 +38,8 @@ class Thread(models.Model):
 
     class Meta:
         ordering = ['-latest_post__pub_date']
+        verbose_name = _('Thread')
+        verbose_name_plural = _('Threads')
 
     def has_read(self, user):
         if not UserRead.objects.get_or_create(user=user, thread=self.id)[0].read:
@@ -52,8 +54,8 @@ class Thread(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(User, related_name="%(class)s_author")
     body = models.TextField()
-    pub_date = models.DateTimeField('Date Published')
-    update = models.DateTimeField('Date Updated')
+    pub_date = models.DateTimeField(_('Date Published'))
+    update = models.DateTimeField(_('Date Updated'))
     thread = models.ForeignKey(Thread)
     hidden = models.BooleanField(default=False)
     markdown = models.BooleanField(default=True)
@@ -61,6 +63,8 @@ class Post(models.Model):
     class Meta:
         ordering = ['pub_date']
         get_latest_by = 'pub_date'
+        verbose_name = _('Post')
+        verbose_name_plural = _('Posts')
 
     def __unicode__(self):
         return '%s - %s' % (self.author, self.body[0:10])

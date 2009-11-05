@@ -1,7 +1,7 @@
 $(document).ready( function() {
        $('*[id^=edit]').click( function() {            
             var id = this.id.substr(5);
-            if( $(this).html() == "cancel" )
+            if( $(this).html() == gettext("cancel") )
             {
                 $.ajax({
                     type: "GET",
@@ -10,7 +10,7 @@ $(document).ready( function() {
                         $('#post_'+id+'_body').html(data);
                     }
                 });
-                $(this).html("edit");
+                $(this).html(gettext("edit"));
             }
             else
             {
@@ -32,14 +32,14 @@ $(document).ready( function() {
                                     $('#edit_'+id).html('edit');
                                 },
                                 error: function(data){
-                                    $('#post_'+id+'_body').html('Error received while editing post!');
+                                    $('#post_'+id+'_body').html(gettext('Error received while editing post!'));
                                 }
                             });
                             return false;
                         });    
                     }
             });
-            $(this).html("cancel");
+            $(this).html(gettext("cancel"));
         }
     });
 

@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="/media/css/main.css" />
 <link rel="stylesheet" href="/media/css/buttons.css" />
 <link rel="stylesheet" href="/media/css/crumbs.css" />
+<script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "dsf" %}"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="/media/js/buttons.js"></script>
 {% endblock head %}
@@ -27,5 +28,16 @@
 {% endblock content %}
 
 {% block footer %}
-
+<div id="language_bar">
+<br /><br />
+Select language 
+<form action="/i18n/setlang/" method="post">
+<select name="language">
+{% for lang in LANGUAGES %}
+<option value="{{ lang.0 }}">{{ lang.1 }}</option>
+{% endfor %}
+</select>
+<input type="submit" value="Go" />
+</form>
+</div>
 {% endblock footer %}
