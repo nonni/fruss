@@ -47,9 +47,20 @@ def user_has_read(user, thread):
     false if the user has not read it.
     '''
     if not UserRead.objects.get_or_create(user=user, thread=thread)[0].read:
-        return "Unread"
+        return "Unread "
     else:
         return ""
         
-
 register.simple_tag(user_has_read)
+
+def have_read(user, thread):
+    '''
+    Returns an ajax link if user has not 'read' a thread,
+    nothing if user has read it.
+    '''
+    if not UserRead.objects.get_or_create(user=user, thread=thread)[0].read:
+        return '<div id="read_%s" style="float:right">read</div>' % thread.id
+    else:
+        return ''
+
+register.simple_tag(have_read)

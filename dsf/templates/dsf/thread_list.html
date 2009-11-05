@@ -3,6 +3,7 @@
 
 {% block head %}
 {{ block.super }}
+<script type="text/javascript" src="/media/js/thread_list.js"></script>
 <link rel="stylesheet" href="/media/css/thread_list.css" />
 <link rel="stylesheet" href="/media/css/paginator.css" />
 {% endblock head %}
@@ -37,7 +38,7 @@
         </dl>
     </li>
     {% for thread in threads.object_list %}
-        <li class="{% user_has_read user thread %} {% cycle 'odd' 'even' %} row">
+    <li id="thread_{{thread.id}}" class="{% user_has_read user thread %}{% cycle 'odd' 'even' %} row">
             <dl>
                 <dt>
                     <span style="padding-right: 5px;">
@@ -46,7 +47,8 @@
                     <span style="line-height: 27px;">
                         <a href="{% url thread thread.id %}?page=last#post_{{ thread|last_post_id }}">{{ thread.title }}</a>
                     </span>
-                </dt>
+                    {% have_read user thread %}
+                    </dt>
                 <dd class="posts">{{ thread|post_count }}</dd>
                 {% get_thread_post thread.id as tp  %}
                 <dd class="date"> {{ tp.pub_date|date:"D d M Y" }} <br />

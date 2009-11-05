@@ -1,9 +1,9 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-# Create your models here.
 from django.db import models
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
+from django.utils.translation import ugettext as _
 
 from fruss.shaker.models import PermissionMixIn
 
@@ -29,6 +29,7 @@ class Category(PermissionMixIn):
     def __unicode__(self):
         return self.name
 
+
 class Thread(models.Model):
     category = models.ForeignKey(Category, related_name="threads")
     title = models.CharField(max_length=200)
@@ -38,8 +39,15 @@ class Thread(models.Model):
     class Meta:
         ordering = ['-latest_post__pub_date']
 
+    def has_read(self, user):
+        if not UserRead.objects.get_or_create(user=user, thread=self.id)[0].read:
+            return False
+        else:
+            return True
+
     def __unicode__(self):
         return self.title
+
 
 class Post(models.Model):
     author = models.ForeignKey(User, related_name="%(class)s_author")
@@ -56,6 +64,7 @@ class Post(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.author, self.body[0:10])
+
 
 class UserRead(models.Model):
     user = models.ForeignKey(User)

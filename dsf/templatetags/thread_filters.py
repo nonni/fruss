@@ -1,5 +1,7 @@
 from django import template
 import markdown
+from contrib.tubedown import YouTubeExtension
+
 register = template.Library()
 
 @register.filter("post_count")
@@ -34,4 +36,6 @@ def thread_last_post_id(object):
 
 @register.filter("markdown")
 def thread_markdown(object):
-    return markdown.markdown(object)
+    myext = YouTubeExtension()
+    md = markdown.Markdown(extensions=[myext])
+    return md.convert(object)

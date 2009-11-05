@@ -10,8 +10,6 @@ TODO for v0.1:
 
 [x] Show which threads are new/have been updated 
 
-[postpone] User has permissions to post in Category, User has permission to see category.
-
 [x] Thread list paging
 
 [x] Reply paging
@@ -36,19 +34,23 @@ TODO for v0.1:
 
 [x] Markdown cheatsheet
 
-[ ] User can choose not to see threads in category in index.
-
-[ ] User can push a 'have read' button in thread list to 'read' thread, without opening it.
+[x] User can push a 'have read' button in thread list to 'read' thread, without opening it.
 
 [ ] Encourage users to get gravatar.
 
 [ ] Finish translation code and allow user to change between available translations
 
+[ ] Enable youtube urls
+
+[ ] Enable mp3 urls.
+
 [ ] Decouple urls in views 
+
+[ ] Read and apply django security document
 
 [ ] Refactor for release
 
-TODO future:
+TODO v0.2:
 
 [ ] Smilies
 
@@ -56,5 +58,16 @@ TODO future:
 
 [ ] User creation, grant user creation permission for staff (done in admin for now)
 
+[ ] User has permissions to post in Category, User has permission to see category.
+
+[ ] User can choose not to see threads in category in index.
+
+[ ] RSS
+
+[ ] Themes
+
+TODO future:
+
+[ ] PMs
 
 d@W}x?Zc

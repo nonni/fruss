@@ -157,3 +157,10 @@ def hide_post(request, post_id):
     else:
         return HttpResponse('Access denied!')
 
+@login_required
+def set_read(request, thread_id):
+    #Mark thread a read for user.
+    read = UserRead.objects.get_or_create(user=request.user, thread=thread_id)[0]
+    read.read = True
+    read.save()
+    return HttpResponse('Success');

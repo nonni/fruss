@@ -24,7 +24,7 @@
 <div id="post_{{post.id}}" class="rounded_style {% cycle odd,even%}">
     <div class="info">
         <ul>
-            <li>{{ post.author }}</li>
+            <li>{{ post.author|escape }}</li>
             <li> {% gravatar user %} </li>
             <li>{{ post.pub_date|date:"D d M Y H:i" }}</li>
             {% if user.is_superuser %}
