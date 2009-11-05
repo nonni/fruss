@@ -30,14 +30,14 @@
 {% block footer %}
 <div id="language_bar">
 <br /><br />
-Select language 
+{% trans "Select language" %}
 <form action="/i18n/setlang/" method="post">
 <select name="language">
 {% for lang in LANGUAGES %}
 <option value="{{ lang.0 }}">{{ lang.1 }}</option>
 {% endfor %}
 </select>
-<input type="submit" value="Go" />
+<input type="submit" value="{% trans "Go" %}" />
 </form>
 </div>
 {% endblock footer %}

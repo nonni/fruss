@@ -2,7 +2,7 @@ from django import template
 from django.utils.translation import ugettext as _
 
 import markdown
-from contrib.tubedown import YouTubeExtension
+from contrib.markdown.extensions.youtube import YouTubeExtension
 
 register = template.Library()
 

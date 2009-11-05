@@ -38,9 +38,9 @@ TODO for v0.1:
 
 [v] Encourage users to get gravatar.
 
-[ ] Finish translation code and allow user to change between available translations
+[x] Finish translation code and allow user to change between available translations
 
-[ ] Enable youtube urls
+[x] Enable youtube urls
 
 [ ] Enable mp3 urls.
 

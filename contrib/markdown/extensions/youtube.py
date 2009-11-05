@@ -6,6 +6,7 @@ class YouTubePattern(markdown.inlinepatterns.Pattern):
 
     def handleMatch(self, m):
         if m.group(2).strip():
+            #Create an youtube player instance.
             obj = etree.Element('object')
             obj.set('width', '425')
             obj.set('height', '344')
@@ -33,8 +34,6 @@ class YouTubeExtension(markdown.Extension):
     def extendMarkdown(self, md, md_globals):
         self.md = md
 
-        #Insert instance of 'mypattern'
-        #md.registerExtension(self)
         MYPATTERN = ':http://www\.youtube\.com/watch\?v=([a-zA-Z0-9\-_]+)[\w&=\-]*:'
         youtubePattern = YouTubePattern(MYPATTERN)
         youtubePattern.md = md
