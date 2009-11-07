@@ -3,6 +3,7 @@ from django.utils.translation import ugettext as _
 
 import markdown
 from contrib.markdown.extensions.youtube import YouTubeExtension
+from contrib.markdown.extensions.mp3player import MP3PlayerExtension
 
 register = template.Library()
 
@@ -38,6 +39,7 @@ def thread_last_post_id(object):
 
 @register.filter("markdown")
 def thread_markdown(object):
-    myext = YouTubeExtension()
-    md = markdown.Markdown(extensions=[myext])
+    tube_ext = YouTubeExtension()
+    mp3_ext = MP3PlayerExtension()
+    md = markdown.Markdown(extensions=[tube_ext,mp3_ext])
     return md.convert(object)

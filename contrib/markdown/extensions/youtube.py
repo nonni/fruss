@@ -34,8 +34,8 @@ class YouTubeExtension(markdown.Extension):
     def extendMarkdown(self, md, md_globals):
         self.md = md
 
-        MYPATTERN = ':http://www\.youtube\.com/watch\?v=([a-zA-Z0-9\-_]+)[\w&=\-]*:'
-        youtubePattern = YouTubePattern(MYPATTERN)
+        REGEXP = ':http://www\.youtube\.com/watch\?v=([a-zA-Z0-9\-_]+)[\w&=\-]*:'
+        youtubePattern = YouTubePattern(REGEXP)
         youtubePattern.md = md
         md.inlinePatterns.add('youtubepattern', youtubePattern, '<not_strong')
 

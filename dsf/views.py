@@ -7,9 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
+from models import Thread, Post, Category, UserRead
 from forms import ThreadForm, ReplyForm
-from models import Post, Thread, Category, UserRead
-
 import markdown
 
 @login_required
