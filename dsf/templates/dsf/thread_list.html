@@ -11,7 +11,7 @@
 {% if category %}
     {% block breadcrumbs %}
         <ul id="crumbs">
-            <li><a href="/forum/">{% trans "Index" %}</a></li>
+            <a href="{% url threads %}">{% trans "Index" %}</a></li>
             {% if category %}
             <li><a href="{% url category_threads category %}">{{ threads.object_list.0.category }}</a></li>
             {% endif %}
