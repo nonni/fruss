@@ -8,6 +8,10 @@ from django.utils.translation import ugettext as _
 from fruss.shaker.models import PermissionMixIn
 
 class Category(PermissionMixIn):
+    '''
+    Category, each thread belongs to a category.
+    Per user category management is planned in a future release
+    '''
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=7)
     slug = models.SlugField(max_length=100, blank=True)
@@ -71,6 +75,9 @@ class Post(models.Model):
 
 
 class UserRead(models.Model):
+    '''
+    User has read thread.
+    '''
     user = models.ForeignKey(User)
     thread = models.ForeignKey(Thread)
     read = models.BooleanField(default=False)

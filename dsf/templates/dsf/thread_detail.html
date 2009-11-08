@@ -44,7 +44,7 @@
         {% if post.markdown %}
             {{ post.body|markdown|safe }}
         {% else %}
-            {{ post.body|linebreaksbr }}
+            {{ post.body|linebreaksbr|escape }}
         {% endif %}
         </p>
         {% ifnotequal post.pub_date|date:"D d M Y H:i"  post.update|date:"D d M Y H:i"  %}

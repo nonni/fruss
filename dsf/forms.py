@@ -1,16 +1,23 @@
 from django import forms
 from models import Post, Category, Thread
+from django.utils.translation import ugettext as _
 
 class ThreadForm(forms.Form):
-    title = forms.CharField()
-    body = forms.CharField(widget=forms.Textarea())
-    category = forms.ModelChoiceField( Category.objects.all())
-    markdown = forms.BooleanField(initial=True, required=False)
+    '''
+    New thread form
+    '''
+    title = forms.CharField(label=_('Title'))
+    body = forms.CharField(widget=forms.Textarea(), label=_('Body'))
+    category = forms.ModelChoiceField( Category.objects.all(), label=_('Category'))
+    markdown = forms.BooleanField(initial=True, required=False, label=_('Markdown'))
 
 
 class ReplyForm(forms.ModelForm):
-    body = forms.CharField(widget=forms.Textarea())
-    markdown = forms.BooleanField(initial=True, required=False)
+    '''
+    New reply form
+    '''
+    body = forms.CharField(widget=forms.Textarea(), label=_('Body'))
+    markdown = forms.BooleanField(initial=True, required=False, label=_('Markdown'))
 
     class Meta:
         model = Post

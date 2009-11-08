@@ -1,9 +1,22 @@
 import markdown
 from markdown import etree
 import re
+'''
+    Youtube Player for py-markdown.
+    Creates an embedded youtube player for a given youtubelink. f.ex.
+    :linktovideo:.
+
+    Basic usage:
+        >>> import markdown
+        >>> import path to youtube extension
+        >>> text = ':http://www.youtube.com/watch?v=jlo3PmRIrnQ:'
+        >>> tube = YouTubeExtension()
+        >>> html = markdown.markdown(text, extensions=[tube])
+'''
+
+
 
 class YouTubePattern(markdown.inlinepatterns.Pattern):
-
     def handleMatch(self, m):
         if m.group(2).strip():
             #Create an youtube player instance.

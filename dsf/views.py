@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 
 from models import Thread, Post, Category, UserRead
 from forms import ThreadForm, ReplyForm
@@ -72,7 +73,7 @@ def get_thread_posts(request, thread_id):
                 u.read = False
                 u.save()
             #Focus on new post after reply.
-            return HttpResponseRedirect('/forum/%s/?page=last#post_%s' % (thread.id, reply.id))
+            return HttpResponseRedirect('%s?page=last#post_%s' % (reverse('thread', args=[thread.id]), reply.id))
     else:
         form = ReplyForm()
 
@@ -92,7 +93,6 @@ def get_thread_posts(request, thread_id):
 
 @login_required
 def new_thread(request):
-
     if request.method == 'POST':
         form = ThreadForm(request.POST)
         if form.is_valid():
@@ -108,7 +108,7 @@ def new_thread(request):
             read = UserRead.objects.get_or_create(user=request.user, thread=thread)[0]
             read.read = True
             read.save()
-            return HttpResponseRedirect('/forum/')
+            return HttpResponseRedirect(reverse('threads'))
     else:
         form = ThreadForm()
 
@@ -117,8 +117,8 @@ def new_thread(request):
 @login_required
 def edit_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    #if not request.user is post.author and not request.user.is_superuser:
-    #    return HttpResponse('Access denied!')
+    if not request.user is post.author and not request.user.is_superuser:
+        return HttpResponse('Access denied!')
     if request.method == 'POST':
         form = ReplyForm(request.POST)
         if form.is_valid():

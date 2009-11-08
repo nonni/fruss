@@ -4,6 +4,30 @@ from markdown import etree
 import re
 
 class MP3PlayerPattern(markdown.inlinepatterns.Pattern):
+    '''
+    MP3 Player plugin for py-markdown (http://www.freewisdom.org/projects/python-markdown/).
+    
+    Converts :http://urltomp3/song.mp3: to an inline flash mp3 player which plays
+    song.mp3.
+
+    Basic Usage:
+        >>> import markdown
+        >>> import location of mp3 player extension.
+        >>> text = ':http://example.com/song.mp3:'
+        >>> mp3 = MP3PlayerExtension()
+        >>> html = markdown.markdown(text, extensions=[mp3])
+
+    Requirements:
+        * markdown
+        * wordpress audio player (http://wpaudioplayer.com/)
+          or any other audioplayer capable of playing mp3 from
+          remote sites.
+        * the site displaying the player must include the audio-player.js file.
+    Paths:
+        By default the path of the audioplayer is
+        /media/audio-player/player.swf
+    '''
+
     def handleMatch(self,m):
         if m.group(2).strip():
             #Create a mp3 player instance.

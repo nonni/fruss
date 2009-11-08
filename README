@@ -42,13 +42,11 @@ TODO for v0.1:
 
 [x] Enable youtube urls
 
-[ ] Enable mp3 urls.
+[x] Enable mp3 urls.
 
-[ ] Decouple markdown extensions
+[x] Decouple urls in views 
 
-[ ] Decouple urls in views 
-
-[ ] Read and apply django security document
+[v] Read and apply django security document
 
 [ ] Refactor for release
 
@@ -63,6 +61,8 @@ TODO v0.2:
 [ ] User has permissions to post in Category, User has permission to see category.
 
 [ ] User can choose not to see threads in category in index.
+
+[ ] Decouple markdown extensions
 
 [ ] RSS
 

@@ -16,8 +16,10 @@ class PostNode(template.Node):
             return '' 
         return ''
 
-def do_get_thread_post(parser, token):    
-    print token.contents
+def do_get_thread_post(parser, token):   
+    '''
+    Returns the thread 'reply' as an object.
+    '''
     tokens = token.split_contents()
     if len(tokens) != 4:
         raise template.TemplateSyntaxError, "%r tag requires exactly three arguments"
@@ -30,8 +32,6 @@ register.tag('get_thread_post', do_get_thread_post)
 def gravatar(user, size=60):
     '''
     Returns a gravatar for a given user.
-    TODO: make it return an empty string if email has no
-          gravatar.
     '''
     gravatar_url = "http://www.gravatar.com/avatar.php?"
     gravatar_url += urllib.urlencode({
